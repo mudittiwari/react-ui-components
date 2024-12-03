@@ -1,40 +1,51 @@
-# Project Title
+# React UI Components
 
 ## Table of Contents
-- [Features](#features1)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Buttons](#buttons)
 
-## Features
-- Feature 1
-- Feature 2
+## Buttons
+- [MovingBorderButton](#movingBorderButton)
 
-## Installation
-Steps to install the project.
+### MovingBorderButton
 
-## Usage
-Instructions on using the project.
+# MovingBorderButton Props and Usage
 
-## Features
-- Feature 1
-- Feature 2
+## Props:
 
-## Features
-- Feature 1
-- Feature 2
+| Prop              | Type                | Description                                                       | Required |
+|-------------------|---------------------|-------------------------------------------------------------------|----------|
+| `label`           | `string`            | The label to display on the button.                               | Yes      |
+| `onClick`         | `() => void`        | Optional click handler function.                                  | No       |
+| `className`       | `string`            | Optional tailwind css class name for custom styling.                           | No       |
+| `backgroundColor` | `string`            | Background color of the button. Default is transparent.          | No       |
+| `color`           | `string`            | Text color for the button. Default is `#000`.                     | No       |
+| `borderRadius`    | `string`            | Border radius of the button (e.g., `5px`, `50%`, `8px`).          | No       |
+| `linearGradient`  | `string`            | Optional linear gradient for the dynamic background.              | No       |
 
-  ## Features
-- Feature 1
-- Feature 2
+## Sample Usage:
 
-  ## Features
-- Feature 1
-- Feature 2
+```tsx
+import React from 'react';
+import MovingBorderButton from 'your-package-name';
 
-## Features
-- Feature 1
-- Feature 2
+const App: React.FC = () => {
+  const handleClick = () => {
+    alert('Button clicked!');
+  };
 
-## Features1
-- Feature 1
-- Feature 2
+  return (
+    <div>
+      {/* Example of the MovingBorderButton component */}
+      <MovingBorderButton 
+        label="Click Me" 
+        onClick={handleClick}
+        backgroundColor="#000" 
+        color="#fff" 
+        borderRadius="8px" 
+        linearGradient="linear-gradient(to right, #ff7e5f, #feb47b)"
+      />
+    </div>
+  );
+};
+
+export default App;
