@@ -6,9 +6,9 @@
 ## Buttons
 - [MovingBorderButton](#movingBorderButton)
 
-### MovingBorderButton
+## MovingBorderButton
 
-# MovingBorderButton Props and Usage
+### MovingBorderButton Props and Usage
 
 ## Props:
 
