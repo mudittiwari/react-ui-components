@@ -8,6 +8,9 @@
 
 ## MovingBorderButton
 
+## Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingBorderButton.gif)
+
 ### MovingBorderButton Props and Usage
 
 ## Props:
