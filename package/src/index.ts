@@ -1,0 +1,1 @@
+export { default as MovingBorderButton } from "./components/MovingBorderButton/MovingBorderButton";
