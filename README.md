@@ -1,5 +1,12 @@
 # React UI Components
 
+
+## Installation
+```
+npm i react-ui-components-mudittiwari13
+```
+
+
 ## Table of Contents
 - [Buttons](#buttons)
 
