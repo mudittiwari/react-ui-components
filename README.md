@@ -36,7 +36,7 @@ npm i react-ui-components-mudittiwari13
 
 ```tsx
 import React from 'react';
-import MovingBorderButton from 'your-package-name';
+import MovingBorderButton from 'react-ui-components-mudittiwari13';
 
 const App: React.FC = () => {
   const handleClick = () => {
@@ -45,7 +45,6 @@ const App: React.FC = () => {
 
   return (
     <div>
-      {/* Example of the MovingBorderButton component */}
       <MovingBorderButton 
         label="Click Me" 
         onClick={handleClick}
