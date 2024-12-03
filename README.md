@@ -50,16 +50,3 @@ const App: React.FC = () => {
 
 export default App;
 ```
-
-
-## Props:
-
-| Prop              | Type                | Description                                                       | Required |
-|-------------------|---------------------|-------------------------------------------------------------------|----------|
-| `label`           | `string`            | The label to display on the button.                               | Yes      |
-| `onClick`         | `() => void`        | Optional click handler function.                                  | No       |
-| `className`       | `string`            | Optional tailwind css class name for custom styling.                           | No       |
-| `backgroundColor` | `string`            | Background color of the button. Default is transparent.          | No       |
-| `color`           | `string`            | Text color for the button. Default is `#000`.                     | No       |
-| `borderRadius`    | `string`            | Border radius of the button (e.g., `5px`, `50%`, `8px`).          | No       |
-| `linearGradient`  | `string`            | Optional linear gradient for the dynamic background.              | No       |
