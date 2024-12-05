@@ -57,16 +57,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <MovingBorderButton 
-        label="Click Me" 
-        onClick={handleClick}
-        backgroundColor="#000" 
-        color="#fff" 
-        borderRadius="8px" 
-        linearGradient="linear-gradient(to right, #ff7e5f, #feb47b)"
-      />
-    </div>
+    <div className=' h-40 w-80 flex items-center justify-center'>
+        <MovingBorderButton label='click me!' onClick={() => { console.log("button clicked") }} className='px-2 py-2' backgroundColor='white' color='black' linearGradient='linear-gradient(to right, #cac531, #f3f9a7)'></MovingBorderButton>
+      </div>
   );
 };
 
@@ -105,16 +98,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
-      <MovingCornerBorderButton 
-        label="Click Me" 
-        onClick={handleClick}
-        backgroundColor="#000" 
-        color="#fff" 
-        borderRadius="8px" 
-        linearGradient="linear-gradient(to right, #ff7e5f, #feb47b)"
-      />
-    </div>
+    <div className=' h-40 w-80 flex items-center justify-center'>
+        <MovingCornerBorderButton label='click me!' onClick={() => { console.log("button clicked") }} className='px-2 py-2' backgroundColor='white' color='black' linearGradient='linear-gradient(to right, #0f0c29, #302b63, #24243e)'></MovingCornerBorderButton>
+        
+      </div>
   );
 };
 
