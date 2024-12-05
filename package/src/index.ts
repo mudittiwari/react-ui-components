@@ -1,1 +1,2 @@
 export { default as MovingBorderButton } from "./components/MovingBorderButton/MovingBorderButton";
+export { default as MovingCornerBorderButton} from "./components/MovingCornerBorderButton/MovingCornerBorderButton";

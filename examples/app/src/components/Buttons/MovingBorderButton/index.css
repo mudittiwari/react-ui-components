@@ -1,23 +1,23 @@
-.button-container {
+.moving-border-button-container {
     position: relative;
     display: inline-flex;
     align-items: center;
     z-index: 100;
 }
 
-.button-container::before {
+.moving-border-button-container::before {
     content: "";
     position: absolute;
     transform: translateY(-50%);
-    width: 120%;
+    width: 180%;
     aspect-ratio: 1;
-    left: -9px;
+    left: -20px;
     background:  var(--dynamic-gradient);
     z-index: 0;
     animation: gradient-rotate 3s infinite, spin 2s linear infinite;
 }
 
-.custom-button {
+.moving-border-button {
     padding: 10px 20px;
     border: none;
     cursor: pointer;

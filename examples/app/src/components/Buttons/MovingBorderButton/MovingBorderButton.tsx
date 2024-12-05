@@ -17,7 +17,7 @@ const MovingBorderButton: React.FC<MovingBorderButtonProps> = ({ label, onClick,
       <div className="p-1 overflow-hidden w-max" style={{
         borderRadius: borderRadius
       }}>
-        <div className="button-container" style={
+        <div className="moving-border-button-container" style={
           {
             "--dynamic-gradient": linearGradient ? linearGradient : "linear-gradient(to right, #1565C0, #b92b27)"
           } as React.CSSProperties
@@ -30,7 +30,7 @@ const MovingBorderButton: React.FC<MovingBorderButtonProps> = ({ label, onClick,
               color: color,
               borderRadius: borderRadius
             }}
-            className={`custom-button ${className}`}
+            className={`moving-border-button ${className}`}
           >
             {label}
           </button>
