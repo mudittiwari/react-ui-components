@@ -1,6 +1,6 @@
 {
   "name": "react-ui-components-mudittiwari13",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -43,5 +43,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mudittiwari/react-ui-components.git"
+  }
 }
