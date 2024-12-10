@@ -9,7 +9,7 @@ A lightweight and customizable React component library for modern web applicatio
 
 Quickly integrate beautiful UI elements into your projects and save development time!
 
-![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingBorderButton.gif)&nbsp;&nbsp;&nbsp;&nbsp;![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingCornerBorderButton.gif)![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingBeforeLeftRightButton.gif)
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingBorderButton.gif)&nbsp;&nbsp;&nbsp;&nbsp;![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingCornerBorderButton.gif)&nbsp;&nbsp;&nbsp;&nbsp;![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/MovingBeforeLeftRightButton.gif)
 
 
 
