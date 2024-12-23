@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
 import { MovingCornerBorderButton, MovingBorderButton, MovingBeforeLeftRightButton } from 'react-ui-components-mudittiwari13';
+import cardbg from "./assets/cardbg.jpg"
+import Card2 from './components/Cards/Card2/Card2';
+import Card3 from './components/Cards/Card3/Card3';
+import ecommercebg from "./assets/ecommercecard.png";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
 
 // import MovingCornerBorderButton from './components/Buttons/MovingCornerBorderButton/MovingCornerBorderButton';
@@ -19,9 +23,20 @@ function App() {
         
       </div> */}
 
-      <div className=' h-40 w-80 flex items-center justify-center'>
-        <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' />
+      <div className='flex h-full w-full mt-20 items-center justify-center'>
+        {/* <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' /> */}
+        {/* <Card2
+        image={cardbg} // Replace with your tour destination image URL
+        title="Explore Paris"
+        description="Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more."
+      /> */}
 
+<Card3
+                image={ecommercebg}
+                title="Running Shoes"
+                description="Lightweight and comfortable running shoes."
+                price="$120"
+            />
       </div>
     </>
   );
