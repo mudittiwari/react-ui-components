@@ -1,21 +1,17 @@
-<<<<<<< HEAD
 import React from "react";
+import "./App.css";
+// import Card1 from "./components/Cards/Card1/Card1";
 import "./App.css";
 import {
   MovingCornerBorderButton,
   MovingBorderButton,
-  MovingBeforeLeftRightButton,
+  MovingBeforeLeftRightButton, Card1, Card2, Card3
 } from "react-ui-components-mudittiwari13";
-import Card1 from "./components/Cards/Card1";
-=======
-import React from 'react';
-import './App.css';
-import { MovingCornerBorderButton, MovingBorderButton, MovingBeforeLeftRightButton } from 'react-ui-components-mudittiwari13';
-import cardbg from "./assets/cardbg.jpg"
-import Card2 from './components/Cards/Card2/Card2';
-import Card3 from './components/Cards/Card3/Card3';
-import ecommercebg from "./assets/ecommercecard.png";
->>>>>>> 1b2b43848616c62fa6e5f761fd4104d19ec0b9d5
+import card2bg from "./assets/cardbg.jpg";
+// import Card2 from "./components/Cards/Card2/Card2";
+// import Card3 from "./components/Cards/Card3/Card3";
+import card3bg from "./assets/ecommercecard.png";
+import card1bg from "./assets/Card1bg.webp";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
 
 // import MovingCornerBorderButton from './components/Buttons/MovingCornerBorderButton/MovingCornerBorderButton';
@@ -34,16 +30,7 @@ function App() {
         
       </div> */}
 
-<<<<<<< HEAD
-      {/* <div className=' h-40 w-80 flex items-center justify-center'>
-        <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' />
-
-      </div> */}
-
-      <div className="w-max h-max p-10">
-        <Card1 />
-=======
-      <div className='flex h-full w-full mt-20 items-center justify-center'>
+      <div className="flex h-full w-full mt-20 items-center justify-around">
         {/* <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' /> */}
         {/* <Card2
         image={cardbg} // Replace with your tour destination image URL
@@ -51,15 +38,46 @@ function App() {
         description="Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more."
       /> */}
 
-<Card3
-                image={ecommercebg}
-                title="Running Shoes"
-                description="Lightweight and comfortable running shoes."
-                price="$120"
-            />
->>>>>>> 1b2b43848616c62fa6e5f761fd4104d19ec0b9d5
+        <Card1
+          title="Explore China"
+          description="China is a beautiful country with a rich history, vibrant culture, and stunning landscapes. From the Great Wall to the bustling city of Shanghai, there is much to discover."
+          image={card1bg}
+          width="25rem"
+          height="25rem"
+          rotationDirection="Y"
+          overlayColor="rgba(0, 0, 0, 0.8)"
+          overlayOpacity={0.9}
+        />
+
+        <Card2
+          image={card2bg}
+          title="Dynamic Card"
+          description="This card is fully configurable and reusable."
+          width="w-96"
+          height="h-96"
+          titleFontSize="text-2xl"
+          descriptionFontSize="text-base"
+        />
+
+        <Card3
+          image={card3bg}
+          title="Luxury Sneakers"
+          description="Step into the ultimate comfort and style."
+          price="$250"
+          sizes={["S", "M", "L", "XL", "XXL"]}
+          initialQuantity={1}
+          maxQuantity={5}
+          rating={4}
+          totalReviews={300}
+          buttonText="Buy Now"
+          width="w-96"
+          height="h-96"
+          backgroundColor="bg-gradient-to-l from-green-400 via-blue-500 to-purple-600"
+          onAddToCart={() => {
+            alert("hello world");
+          }}
+        />
       </div>
-      
     </>
   );
 }
