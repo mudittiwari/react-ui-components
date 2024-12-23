@@ -22,6 +22,7 @@ npm i react-ui-components-mudittiwari13
 
 ## Table of Contents
 - [Buttons](#buttons)
+- [Cards](#cards)
 
 ## Buttons
 - [MovingBorderButton](#movingBorderButton)
@@ -158,3 +159,164 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
+## Cards
+- [Card1](#card1)
+- [Card2](#card2)
+- [Card3](#card3)
+
+## Card1
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Card1.gif)
+
+### Props and Usage
+
+| Prop              | Type                | Description                                                       | Required |
+|-------------------|---------------------|-------------------------------------------------------------------|----------|
+| `title`           | `string`            | The title displayed on the card.                                  | Yes      |
+| `description`     | `string`            | The description displayed on the back of the card.                | Yes      |
+| `image`           | `string`            | The background image of the card.                                 | Yes      |
+| `width`           | `string`            | Width of the card. Default is `20rem`.                            | No       |
+| `height`          | `string`            | Height of the card. Default is `20rem`.                           | No       |
+| `rotationDirection` | `X` or `Y`        | Direction of the flip animation. Default is `X`.                  | No       |
+| `overlayColor`    | `string`            | Overlay color for the back face. Default is `rgba(45, 55, 72, 0.8)`. | No       |
+| `overlayOpacity`  | `number`            | Opacity for the overlay. Default is `0.8`.                        | No       |
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import Card1 from 'react-ui-components-mudittiwari13';
+
+const App: React.FC = () => {
+  return (
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
+      <Card1 
+        title='Explore China' 
+        description='China is a beautiful country with a rich history, vibrant culture, and stunning landscapes.' 
+        image='https://via.placeholder.com/400' 
+        width='25rem' 
+        height='25rem' 
+        rotationDirection='Y' 
+        overlayColor='rgba(0, 0, 0, 0.8)' 
+        overlayOpacity={0.9} 
+      />
+    </div>
+  );
+};
+
+export default App;
+```
+
+
+## Card2
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Card2.gif)
+
+### Props and Usage
+
+| Prop                     | Type       | Description                                                       | Required |
+|--------------------------|------------|-------------------------------------------------------------------|----------|
+| `image`                  | `string`   | The background image of the card.                                 | Yes      |
+| `title`                  | `string`   | The title displayed in the middle of the card.                    | Yes      |
+| `description`            | `string`   | The description displayed in the middle of the card.              | Yes      |
+| `width`                  | `string`   | Width of the card. Default is `max-w-sm`.                         | No       |
+| `height`                 | `string`   | Height of the card. Default is `h-96`.                            | No       |
+| `backgroundColor`        | `string`   | Background color for the overlay. Default is `bg-black`.          | No       |
+| `hoverBackgroundColor`   | `string`   | Background color for the overlay on hover. Default is `bg-opacity-70`. | No       |
+| `titleFontSize`          | `string`   | Font size for the title. Default is `text-xl`.                    | No       |
+| `descriptionFontSize`    | `string`   | Font size for the description. Default is `text-sm`.              | No       |
+| `titleAnimationDelay`    | `number`   | Animation delay for the title (in ms). Default is `500`.          | No       |
+| `descriptionAnimationDelay` | `number` | Animation delay for the description (in ms). Default is `700`.    | No       |
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import Card2 from 'react-ui-components-mudittiwari13';
+
+const App: React.FC = () => {
+  return (
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
+      <Card2 
+        image='https://via.placeholder.com/400' 
+        title='Dynamic Card' 
+        description='This card retains the original split effect with enhanced configurability.' 
+        width='max-w-md' 
+        height='h-80' 
+        backgroundColor='bg-gray-900' 
+        hoverBackgroundColor='bg-opacity-80' 
+        titleFontSize='text-2xl' 
+        descriptionFontSize='text-base' 
+        titleAnimationDelay={400} 
+        descriptionAnimationDelay={600} 
+      />
+    </div>
+  );
+};
+
+export default App;
+```
+## Card3
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Card3.gif)
+
+### Props and Usage
+
+| Prop              | Type                | Description                                                       | Required |
+|-------------------|---------------------|-------------------------------------------------------------------|----------|
+| `image`           | `string`            | The background image of the product.                              | Yes      |
+| `title`           | `string`            | The title displayed in the card.                                  | Yes      |
+| `description`     | `string`            | The description displayed in the card.                            | Yes      |
+| `price`           | `string`            | The price displayed on the card.                                  | Yes      |
+| `sizes`           | `string[]`          | Array of available sizes. Default is `["S", "M", "L", "XL"]`.     | No       |
+| `initialQuantity` | `number`            | Initial quantity selected. Default is `1`.                       | No       |
+| `maxQuantity`     | `number`            | Maximum quantity allowed. Default is `10`.                       | No       |
+| `rating`          | `number`            | Product rating (1-5). Default is `4`.                             | No       |
+| `totalReviews`    | `number`            | Total number of reviews. Default is `120`.                        | No       |
+| `buttonText`      | `string`            | Text for the CTA button. Default is `Add to Cart`.                | No       |
+| `onAddToCart`     | `(quantity: number, size: string | null) => void` | Callback function when adding to the cart.                        | No       |
+| `width`           | `string`            | Width of the card. Default is `w-96`.                             | No       |
+| `height`          | `string`            | Height of the card. Default is `h-96`.                            | No       |
+| `backgroundColor` | `string`            | Background color for the card. Default is a gradient.             | No       |
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import Card3 from 'react-ui-components-mudittiwari13';
+
+const App: React.FC = () => {
+  const handleAddToCart = (quantity: number, size: string | null) => {
+    console.log(`Added ${quantity} items of size ${size || "N/A"} to the cart.`);
+  };
+
+  return (
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
+      <Card3 
+        image='https://via.placeholder.com/400' 
+        title='Luxury Sneakers' 
+        description='Step into the ultimate comfort and style.' 
+        price='$250' 
+        sizes={["S", "M", "L", "XL", "XXL"]} 
+        initialQuantity={1} 
+        maxQuantity={5} 
+        rating={4.5} 
+        totalReviews={300} 
+        buttonText='Buy Now' 
+        width='w-80' 
+        height='h-96' 
+        backgroundColor='bg-gradient-to-l from-green-400 via-blue-500 to-purple-600' 
+        onAddToCart={handleAddToCart} 
+      />
+    </div>
+  );
+};
+
+export default App;
+```
+
+
