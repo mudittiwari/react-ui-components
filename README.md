@@ -168,7 +168,7 @@ export default App;
 ## Card1
 
 ### Demo
-![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Card1.gif)
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/card1.gif)
 
 ### Props and Usage
 
@@ -213,7 +213,7 @@ export default App;
 ## Card2
 
 ### Demo
-![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Card2.gif)
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/card2.gif)
 
 ### Props and Usage
 
@@ -262,7 +262,7 @@ export default App;
 ## Card3
 
 ### Demo
-![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Card3.gif)
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/card3.gif)
 
 ### Props and Usage
 
