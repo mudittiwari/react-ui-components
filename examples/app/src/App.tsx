@@ -1,6 +1,11 @@
-import React from 'react';
-import './App.css';
-import { MovingCornerBorderButton, MovingBorderButton, MovingBeforeLeftRightButton } from 'react-ui-components-mudittiwari13';
+import React from "react";
+import "./App.css";
+import {
+  MovingCornerBorderButton,
+  MovingBorderButton,
+  MovingBeforeLeftRightButton,
+} from "react-ui-components-mudittiwari13";
+import Card1 from "./components/Cards/Card1";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
 
 // import MovingCornerBorderButton from './components/Buttons/MovingCornerBorderButton/MovingCornerBorderButton';
@@ -19,10 +24,15 @@ function App() {
         
       </div> */}
 
-      <div className=' h-40 w-80 flex items-center justify-center'>
+      {/* <div className=' h-40 w-80 flex items-center justify-center'>
         <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' />
 
+      </div> */}
+
+      <div className="w-max h-max p-10">
+        <Card1 />
       </div>
+      
     </>
   );
 }
