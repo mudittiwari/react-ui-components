@@ -7,12 +7,15 @@ import "./App.css";
 //   MovingBorderButton,
 //   MovingBeforeLeftRightButton, Card1, Card2, Card3
 // } from "react-ui-components-mudittiwari13";
+import {Card4} from "react-ui-components-mudittiwari13";
 import card2bg from "./assets/cardbg.jpg";
 import Card2 from "./components/Cards/Card2/Card2";
 import Card3 from "./components/Cards/Card3/Card3";
 import card3bg from "./assets/ecommercecard.png";
 import card1bg from "./assets/Card1bg.webp";
-import Card4 from "./components/Cards/Card4/Card4";
+// import Card4 from "./components/Cards/Card4/Card4";
+import testimonialImage from "./assets/testimonial.jpg";
+import testimonialImage2 from "./assets/testimonial.png";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
 
 // import MovingCornerBorderButton from './components/Buttons/MovingCornerBorderButton/MovingCornerBorderButton';
@@ -102,12 +105,48 @@ function App() {
             Meet Our Team
           </h1>
           <div className="flex justify-around flex-wrap gap-10 relative z-10">
-            <Card4 />
-            <Card4 />
-            <Card4 />
-            <Card4 />
-            <Card4 />
-            <Card4 />
+            <Card4
+              image={testimonialImage}
+              name="John Doe"
+              designation="CEO, Example Corp"
+              message="This is the best service I have ever used! The attention to detail
+        and customer support are exceptional. Highly recommend to everyone."
+            />
+            <Card4
+              image={testimonialImage2}
+              name="John Doe"
+              designation="CEO, Example Corp"
+              message="This is the best service I have ever used! The attention to detail
+        and customer support are exceptional. Highly recommend to everyone."
+            />
+            <Card4
+              image={testimonialImage2}
+              name="John Doe"
+              designation="CEO, Example Corp"
+              message="This is the best service I have ever used! The attention to detail
+        and customer support are exceptional. Highly recommend to everyone."
+            />
+            <Card4
+              image={testimonialImage}
+              name="John Doe"
+              designation="CEO, Example Corp"
+              message="This is the best service I have ever used! The attention to detail
+        and customer support are exceptional. Highly recommend to everyone."
+            />
+            <Card4
+              image={testimonialImage2}
+              name="John Doe"
+              designation="CEO, Example Corp"
+              message="This is the best service I have ever used! The attention to detail
+        and customer support are exceptional. Highly recommend to everyone."
+            />
+            <Card4
+              image={testimonialImage}
+              name="John Doe"
+              designation="CEO, Example Corp"
+              message="This is the best service I have ever used! The attention to detail
+        and customer support are exceptional. Highly recommend to everyone."
+            />
           </div>
         </div>
       </div>
