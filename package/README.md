@@ -315,3 +315,47 @@ export default App;
 ```
 
 
+## Card4
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/card4.gif)
+
+### Props and Usage
+
+| Prop          | Type      | Description                                                   | Required |
+|--------------|----------|---------------------------------------------------------------|----------|
+| `image`      | `string`  | The profile image of the person giving the testimonial.       | Yes      |
+| `name`       | `string`  | The name of the person displayed on the card.                 | Yes      |
+| `designation`| `string`  | The designation or role of the person.                        | Yes      |
+| `message`    | `string`  | The testimonial or message displayed on the card.            | Yes      |
+| `width`      | `string`  | Width of the card. Default is `w-96`.                         | No       |
+| `height`     | `string`  | Height of the card. Default is `auto`.                        | No       |
+| `backgroundColor` | `string` | Background color for the card. Default is `bg-[#ffffff]/10`. | No       |
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import Card4 from 'react-ui-components-mudittiwari13';
+import testimonialImage from '../../../assets/testimonial.png';
+
+const App: React.FC = () => {
+  return (
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
+      <Card4 
+        image={testimonialImage} 
+        name="John Doe" 
+        designation="CEO, Example Corp" 
+        message="This is the best service I have ever used! The attention to detail 
+                 and customer support are exceptional. Highly recommend to everyone." 
+        width="w-80" 
+        height="h-auto" 
+        backgroundColor="bg-[#ffffff]/10" 
+      />
+    </div>
+  );
+};
+
+```
+
+
