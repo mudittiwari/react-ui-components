@@ -1,13 +1,15 @@
 {
   "name": "react-ui-components-mudittiwari13",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src/components"
   ],
+  "style": "dist/index.css",
   "scripts": {
     "build": "rollup -c",
     "prepare": "npm run build",

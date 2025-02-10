@@ -25,9 +25,9 @@ export default {
     commonjs(),
     typescript({ tsconfig: "./tsconfig.json" }),
     postcss({
-      extract: false,
-      modules: true,
-      use: ["sass"],
+      extract: true,
+      minimize: true,
+      sourceMap: true,
     }),
     terser(),
   ],
