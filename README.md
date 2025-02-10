@@ -362,8 +362,8 @@ const App: React.FC = () => {
 ## Accordions
 - [Accordion1](#accordion1)
 - [Accordion2](#accordion2)
-- [Accordion](#accordion3)
-- [Accordion](#accordion4)
+- [Accordion3](#accordion3)
+- [Accordion4](#accordion4)
 
 
 
