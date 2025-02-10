@@ -18,6 +18,7 @@ npm i react-ui-components-mudittiwari13
 ## Table of Contents
 - [Buttons](#buttons)
 - [Cards](#cards)
+- [Accordions](#accordions)
 
 ## Buttons
 - [MovingBorderButton](#movingBorderButton)
@@ -358,5 +359,319 @@ const App: React.FC = () => {
 };
 
 ```
+## Accordions
+- [Accordion1](#accordion1)
+- [Accordion2](#accordion2)
+- [Accordion3](#accordion3)
+- [Accordion4](#accordion4)
 
 
+
+## Accordion1
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Accordion1.gif)
+
+### Props and Usage
+
+| Prop             | Type       | Description                                                    | Required |
+|-----------------|-----------|----------------------------------------------------------------|----------|
+| `items`         | `AccordionItem[]` | Array of accordion items with `title` and `content`.   | Yes      |
+| `multipleOpen`  | `boolean`  | Allows multiple accordion items to be open simultaneously. Default is `false`. | No       |
+| `bgColor`       | `string`   | Background color of the accordion. Default is `"bg-[#F8FAFC] dark:bg-[#1E293B]"`. | No       |
+| `textColor`     | `string`   | Text color for the accordion items. Default is `"text-gray-900 dark:text-gray-200"`. | No       |
+| `borderColor`   | `string`   | Border color of the accordion. Default is `"border-[#4F46E5] dark:border-[#A78BFA]"`. | No       |
+| `hoverBgColor`  | `string`   | Background gradient when hovering over an accordion item. Default is `"hover:bg-gradient-to-r hover:from-[#FF5733] hover:to-[#FF8C00] dark:hover:from-[#8E44AD] dark:hover:to-[#3498DB]"`. | No       |
+| `activeBgColor` | `string`   | Background color when an accordion item is active/open. Default is `"bg-gradient-to-r from-[#FF8C00] to-[#FF2D55] text-white shadow-lg"`. | No       |
+| `icon`          | `string`   | Custom icon to display on the right side of each accordion header. Default is `"🔽"`. | No       |
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import {Accordion1} from "react-ui-components-mudittiwari13";
+import "react-ui-components-mudittiwari13/dist/index.css";
+
+const App: React.FC = () => {
+const accordionData = [
+    {
+      title: "Photography",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800",
+      icon: "📸",
+    },
+    {
+      title: "Design",
+      content: "Discover modern UI/UX techniques and creative design strategies.",
+      image: "https://images.unsplash.com/photo-1684262483735-1101bcb10f0d?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🎨",
+    },
+    {
+      title: "Technology",
+      content: "Stay updated with the latest trends in AI, Web3, and development.",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+      icon: "🚀",
+    },
+    {
+      title: "Nature",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1591779051696-1c3fa1469a79?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🌿",
+    },
+  ];
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-10">
+          <Accordion1 
+        items={accordionData}
+        multipleOpen={true} 
+        bgColor="bg-[#F1F5F9] dark:bg-[#111827]"
+        textColor="text-gray-900 dark:text-gray-200"
+        borderColor="border-[#EC4899] dark:border-[#A855F7]"
+        hoverBgColor="hover:bg-gradient-to-r hover:from-[#FF5733] hover:to-[#FF8C00] dark:hover:from-[#8E44AD] dark:hover:to-[#3498DB]"
+        activeBgColor="bg-gradient-to-r from-[#06B6D4] to-[#9333EA] text-white shadow-lg"
+        icon="✨"
+      />
+    </div>
+  );
+};
+
+```
+
+
+
+## Accordion2
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Accordion2.gif)
+
+### Props and Usage
+
+| Prop               | Type       | Description                                                            | Required |
+|-------------------|-----------|------------------------------------------------------------------------|----------|
+| `items`          | `AccordionItem[]` | Array of accordion items with `title`, `content`, `image`, and `icon`. | Yes      |
+| `bgColor`        | `string`   | Background color of the accordion. Default is `"linear-gradient(135deg, #ff9a9e, #fad0c4)"`. | No       |
+| `headerColor`    | `string`   | Background color of the accordion headers. Default is `"#ff4b2b"`.     | No       |
+| `textColor`      | `string`   | Text color of the accordion. Default is `"#fff"`.                     | No       |
+| `borderColor`    | `string`   | Border color of the accordion. Default is `"#ff6b6b"`.                | No       |
+| `activeHeaderColor` | `string`   | Background color when an accordion item is active/open. Default is `"#ffcc00"`. | No       |
+| `activeTextColor` | `string`   | Text color for an active/open accordion item. Default is `"#222"`.    | No       |
+| `iconRotate`     | `boolean`  | Whether the icon should rotate when an item is expanded. Default is `true`. | No       |
+| `stackOffsetX`   | `number`   | Horizontal offset between stacked images. Default is `-6`.            | No       |
+| `stackOffsetY`   | `number`   | Vertical offset between stacked images. Default is `10`.              | No       |
+| `animationDuration` | `number` | Duration of animations (in milliseconds). Default is `700`.           | No       |
+| `shadowColor`    | `string`   | Color of the box shadow effect. Default is `"#ffeb3b"`.               | No       |
+| `height`         | `string`   | Height of the images inside the accordion. Default is `"h-72"`.       | No       |
+
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import {Accordion2} from "react-ui-components-mudittiwari13";
+import "react-ui-components-mudittiwari13/dist/index.css";
+
+const App: React.FC = () => {
+const accordionData = [
+    {
+      title: "Photography",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800",
+      icon: "📸",
+    },
+    {
+      title: "Design",
+      content: "Discover modern UI/UX techniques and creative design strategies.",
+      image: "https://images.unsplash.com/photo-1684262483735-1101bcb10f0d?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🎨",
+    },
+    {
+      title: "Technology",
+      content: "Stay updated with the latest trends in AI, Web3, and development.",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+      icon: "🚀",
+    },
+    {
+      title: "Nature",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1591779051696-1c3fa1469a79?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🌿",
+    },
+  ];
+  return (
+   <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+          <Accordion2
+            items={accordionData}
+            bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
+            headerColor="#2563EB"
+            textColor="#F3F4F6"
+            borderColor="#93C5FD"
+            activeHeaderColor="#60A5FA"
+            activeTextColor="#222"
+            iconRotate={true}
+            animationDuration={500}
+            shadowColor="#2563EB"
+            height="h-72"
+          />
+  </div>
+  );
+};
+
+```
+
+
+## Accordion3
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Accordion3.gif)
+
+### Props and Usage
+
+| Prop               | Type       | Description                                                            | Required |
+|-------------------|-----------|------------------------------------------------------------------------|----------|
+| `items`          | `AccordionItem[]` | Array of accordion items with `title`, `content`, `image`, and `icon`. | Yes      |
+| `bgColor`        | `string`   | Background color of the accordion. Default is `"linear-gradient(135deg, #ff9a9e, #fad0c4)"`. | No       |
+| `headerColor`    | `string`   | Background color of the accordion headers. Default is `"#ff4b2b"`.     | No       |
+| `textColor`      | `string`   | Text color of the accordion. Default is `"#fff"`.                     | No       |
+| `borderColor`    | `string`   | Border color of the accordion. Default is `"#ff6b6b"`.                | No       |
+| `activeHeaderColor` | `string`   | Background color when an accordion item is active/open. Default is `"#ffcc00"`. | No       |
+| `activeTextColor` | `string`   | Text color for an active/open accordion item. Default is `"#222"`.    | No       |
+| `iconRotate`     | `boolean`  | Whether the icon should rotate when an item is expanded. Default is `true`. | No       |
+| `animationDuration` | `number` | Duration of animations (in milliseconds). Default is `700`.           | No       |
+| `shadowColor`    | `string`   | Color of the box shadow effect. Default is `"#ffeb3b"`.               | No       |
+| `height`         | `string`   | Height of the images inside the accordion. Default is `"h-72"`.       | No       |
+
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import {Accordion3} from "react-ui-components-mudittiwari13";
+import "react-ui-components-mudittiwari13/dist/index.css";
+
+const App: React.FC = () => {
+const accordionData = [
+    {
+      title: "Photography",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800",
+      icon: "📸",
+    },
+    {
+      title: "Design",
+      content: "Discover modern UI/UX techniques and creative design strategies.",
+      image: "https://images.unsplash.com/photo-1684262483735-1101bcb10f0d?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🎨",
+    },
+    {
+      title: "Technology",
+      content: "Stay updated with the latest trends in AI, Web3, and development.",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+      icon: "🚀",
+    },
+    {
+      title: "Nature",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1591779051696-1c3fa1469a79?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🌿",
+    },
+  ];
+  return (
+   <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+          <Accordion3
+            items={accordionData}
+            bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
+            headerColor="#2563EB"
+            textColor="#F3F4F6"
+            borderColor="#93C5FD"
+            activeHeaderColor="#60A5FA"
+            activeTextColor="#222"
+            iconRotate={true}
+            animationDuration={500}
+            shadowColor="#2563EB"
+            height="h-[500px]"
+          />
+  </div>
+  );
+};
+
+```
+
+
+
+## Accordion4
+
+### Demo
+![Demo](https://github.com/mudittiwari/react-ui-components/blob/master/examples/app/demo/Accordion4.gif)
+
+
+### Props and Usage
+
+| Prop               | Type       | Description                                                            | Required |
+|-------------------|-----------|------------------------------------------------------------------------|----------|
+| `items`          | `AccordionItem[]` | Array of accordion items with `title`, `content`, `image`, and `icon`. | Yes      |
+| `bgColor`        | `string`   | Background color of the accordion. Default is `"linear-gradient(135deg, #ff9a9e, #fad0c4)"`. | No       |
+| `headerColor`    | `string`   | Background color of the accordion headers. Default is `"#ff4b2b"`.     | No       |
+| `textColor`      | `string`   | Text color of the accordion. Default is `"#fff"`.                     | No       |
+| `borderColor`    | `string`   | Border color of the accordion. Default is `"#ff6b6b"`.                | No       |
+| `activeHeaderColor` | `string`   | Background color when an accordion item is active/open. Default is `"#ffcc00"`. | No       |
+| `activeTextColor` | `string`   | Text color for an active/open accordion item. Default is `"#222"`.    | No       |
+| `iconRotate`     | `boolean`  | Whether the icon should rotate when an item is expanded. Default is `true`. | No       |
+| `animationDuration` | `number` | Duration of animations (in milliseconds). Default is `700`.           | No       |
+| `shadowColor`    | `string`   | Color of the box shadow effect. Default is `"#ffeb3b"`.               | No       |
+| `height`         | `string`   | Height of the images inside the accordion. Default is `"h-72"`.       | No       |
+
+
+### Sample Usage
+
+```tsx
+import React from 'react';
+import {Accordion4} from "react-ui-components-mudittiwari13";
+import "react-ui-components-mudittiwari13/dist/index.css";
+
+const App: React.FC = () => {
+const accordionData = [
+    {
+      title: "Photography",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800",
+      icon: "📸",
+    },
+    {
+      title: "Design",
+      content: "Discover modern UI/UX techniques and creative design strategies.",
+      image: "https://images.unsplash.com/photo-1684262483735-1101bcb10f0d?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🎨",
+    },
+    {
+      title: "Technology",
+      content: "Stay updated with the latest trends in AI, Web3, and development.",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+      icon: "🚀",
+    },
+    {
+      title: "Nature",
+      content: "Explore the beauty of nature with high-resolution photography.",
+      image: "https://images.unsplash.com/photo-1591779051696-1c3fa1469a79?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      icon: "🌿",
+    },
+  ];
+  return (
+   <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+          <Accordion4
+            items={accordionData}
+            bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
+            headerColor="#2563EB"
+            textColor="#F3F4F6"
+            borderColor="#93C5FD"
+            activeHeaderColor="#60A5FA"
+            activeTextColor="#222"
+            iconRotate={true}
+            animationDuration={500}
+            shadowColor="#2563EB"
+            height="h-[500px]"
+          />
+  </div>
+  );
+};
+
+```
