@@ -7,19 +7,26 @@ import "./App.css";
 //   MovingBorderButton,
 //   MovingBeforeLeftRightButton, Card1, Card2, Card3
 // } from "react-ui-components-mudittiwari13";
-import { Card4 } from "react-ui-components-mudittiwari13";
-import card2bg from "./assets/cardbg.jpg";
-import Card2 from "./components/Cards/Card2/Card2";
-import Card3 from "./components/Cards/Card3/Card3";
-import card3bg from "./assets/ecommercecard.png";
-import card1bg from "./assets/Card1bg.webp";
+// import { Card4 } from "react-ui-components-mudittiwari13";
+// import card2bg from "./assets/cardbg.jpg";
+// import Card2 from "./components/Cards/Card2/Card2";
+// import Card3 from "./components/Cards/Card3/Card3";
+// import card3bg from "./assets/ecommercecard.png";
+// import card1bg from "./assets/Card1bg.webp";
 // import Card4 from "./components/Cards/Card4/Card4";
-import testimonialImage from "./assets/testimonial.jpg";
-import testimonialImage2 from "./assets/testimonial.png";
+// import testimonialImage from "./assets/testimonial.jpg";
+// import testimonialImage2 from "./assets/testimonial.png";
 // import Accordion1 from "./components/Accordions/Accordion1/Accordion1";
 // import Accordion2 from "./components/Accordions/Accordion2/Accordion2";
-import {Accordion1 ,Accordion2, Accordion3, Accordion4} from "react-ui-components-mudittiwari13";
+import { Accordion1, Accordion2, Accordion3, Accordion4 } from "react-ui-components-mudittiwari13";
 import "react-ui-components-mudittiwari13/dist/index.css";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
+import AccordionsPage from "./pages/AccordionsPage";
+import ButtonsPage from "./pages/ButtonsPage";
+import CardsPage from "./pages/CardsPage";
+import HomePage from "./pages/HomePage";
 // import Accordion3 from "./components/Accordions/Accordion3/Accordion3";
 // import Accordion4 from "./components/Accordions/Accordion4/Accordion4";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
@@ -118,15 +125,15 @@ function App() {
         
       </div> */}
 
-      <div className="flex flex-col h-full w-full items-center justify-around">
-        {/* <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' /> */}
-        {/* <Card2
+      {/* <div className="flex flex-col h-full w-full items-center justify-around"> */}
+      {/* <MovingBeforeLeftRightButton label='Subscribe!' onClick={() => { console.log("button clicked") }} className='px-8 py-4' backgroundColor='#F26B0F' color='white' beforeColor='#FCC737' borderRadius='30px' hoverTextColor='#7E1891' /> */}
+      {/* <Card2
         image={cardbg} // Replace with your tour destination image URL
         title="Explore Paris"
         description="Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more. Discover the charm of the Eiffel Tower and more."
       /> */}
 
-        {/* <Card1
+      {/* <Card1
           title="Explore China"
           description="China is a beautiful country with a rich history, vibrant culture, and stunning landscapes. From the Great Wall to the bustling city of Shanghai, there is much to discover."
           image={card1bg}
@@ -166,7 +173,7 @@ function App() {
           }}
         /> */}
 
-        {/* <div className="relative min-h-screen w-full bg-[#1e1e1e] py-16 px-6 overflow-hidden">
+      {/* <div className="relative min-h-screen w-full bg-[#1e1e1e] py-16 px-6 overflow-hidden">
           <div
             className="absolute w-72 h-72 bg-[#ff7eb3]/30 rounded-full blur-3xl top-10 left-10"
           ></div>
@@ -231,8 +238,8 @@ function App() {
           </div>
         </div> */}
 
-        {/* Accordion 1 */}
-        <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-10">
+      {/* Accordion 1 */}
+      {/* <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-10">
           <Accordion1 
         items={accordionData}
         multipleOpen={true} 
@@ -243,10 +250,10 @@ function App() {
         activeBgColor="bg-gradient-to-r from-[#06B6D4] to-[#9333EA] text-white shadow-lg"
         icon="✨"
       />
-        </div>
+        </div> */}
 
 
-        <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+      {/* <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
           <Accordion2
             items={accordionData}
             bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
@@ -260,13 +267,13 @@ function App() {
             shadowColor="#2563EB"
             height="h-72"
           />
-        </div>
+        </div> */}
 
 
 
 
-        {/* Accordion 3 */}
-        <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+      {/* Accordion 3 */}
+      {/* <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
           <Accordion3
             items={accordionData}
             bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
@@ -280,10 +287,10 @@ function App() {
             shadowColor="#2563EB"
             height="h-[500px]"
           />
-        </div>
+        </div> */}
 
-        {/* Accordion 4 */}
-        <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+      {/* Accordion 4 */}
+      {/* <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
           <Accordion4
             items={accordionData}
             bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
@@ -301,7 +308,30 @@ function App() {
 
 
         </div>
-      </div>
+      </div> */}
+
+
+
+      <BrowserRouter>
+        <Navbar />
+        <div className="flex">
+          <Sidebar />
+          <div className="w-full p-6 pt-20">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/accordions" element={<AccordionsPage />} />
+              <Route path="/buttons" element={<ButtonsPage />} />
+              <Route path="/cards" element={<CardsPage />} />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
+
+
+
+
+
+
     </>
   );
 }
