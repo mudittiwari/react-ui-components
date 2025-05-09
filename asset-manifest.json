@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/react-ui-components/static/css/main.06a8c462.css",
-    "main.js": "/react-ui-components/static/js/main.7ddeb9c5.js",
+    "main.css": "/react-ui-components/static/css/main.242b0cd5.css",
+    "main.js": "/react-ui-components/static/js/main.522696c0.js",
     "static/js/453.a6a97343.chunk.js": "/react-ui-components/static/js/453.a6a97343.chunk.js",
     "static/media/card1background.jpg": "/react-ui-components/static/media/card1background.90149ddf56e4683020b5.jpg",
     "static/media/ecommercecard.png": "/react-ui-components/static/media/ecommercecard.efc043614fce9f9dfc23.png",
     "static/media/Card1bg.webp": "/react-ui-components/static/media/Card1bg.431138000ec73ece5b74.webp",
     "index.html": "/react-ui-components/index.html",
-    "main.06a8c462.css.map": "/react-ui-components/static/css/main.06a8c462.css.map",
-    "main.7ddeb9c5.js.map": "/react-ui-components/static/js/main.7ddeb9c5.js.map",
+    "main.242b0cd5.css.map": "/react-ui-components/static/css/main.242b0cd5.css.map",
+    "main.522696c0.js.map": "/react-ui-components/static/js/main.522696c0.js.map",
     "453.a6a97343.chunk.js.map": "/react-ui-components/static/js/453.a6a97343.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.06a8c462.css",
-    "static/js/main.7ddeb9c5.js"
+    "static/css/main.242b0cd5.css",
+    "static/js/main.522696c0.js"
   ]
 }
