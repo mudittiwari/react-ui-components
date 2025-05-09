@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./style.css";
+// import "./style.css";
 
 interface AccordionItem {
     title: string;
@@ -45,18 +45,18 @@ const Accordion4: React.FC<StackAccordionProps> = ({
 
     return (
         <div className={`relative w-full max-w-6xl flex flex-col md:flex-row gap-10 items-center p-6 rounded-lg shadow-2xl ${height}`} style={{ background: bgColor }}>
-            <div className="relative w-full md:w-1/2 flex justify-center items-center">
+            <div className="relative w-full md:w-1/2 flex justify-center items-center mt-8">
                 <div className="image-container">
                     <div className="image-rotator" style={{ transform: `rotateX(${rotation}deg)`, transition: "transform 1s ease-in-out" }}>
                         {items.map((item, index) => (
-                            <div key={index} className="image-card" style={{ transform: `rotateX(${index * (360 / items.length)}deg) translateZ(200px)` }}>
+                            <div key={index} className="image-card" style={{ transform: `rotateX(${index * (360 / items.length)}deg) translateZ(170px)` }}>
                                 <img src={item.image} alt="Accordion Image" className="object-cover w-[300px] h-[300px] rounded-lg shadow-2xl" />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-            <div className="w-full md:w-1/2 space-y-6">
+            <div className="w-full md:w-1/2 space-y-6 pt-8">
                 {items.map((item, index) => (
                     <div
                         key={index}

@@ -36,7 +36,7 @@ const Accordion2: React.FC<StackAccordionProps> = ({
   stackOffsetY = 10,
   animationDuration = 700,
   shadowColor = "#ffeb3b",
-  height = "h-[500px]"
+  height = "h-[500px]",
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -55,43 +55,15 @@ const Accordion2: React.FC<StackAccordionProps> = ({
 
   return (
     <div
-      className="relative w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-start p-6 rounded-lg shadow-2xl"
+      className="relative w-full max-w-6xl mx-auto flex flex-col-reverse md:flex-row md:gap-10 gap-28 items-start p-4 sm:p-6 rounded-lg shadow-2xl"
       style={{ background: bgColor }}
     >
-      <div
-        className="relative w-full md:w-1/2 flex justify-center items-center"
-        ref={imageContainerRef}
-      >
-        <div className="relative w-[80%]" style={{ height: `${imageHeight}px` }}>
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className={`absolute w-full transition-all duration-${animationDuration} rounded-lg overflow-hidden shadow-xl border`}
-              style={{
-                borderColor: borderColor,
-                top: `${index * stackOffsetY}px`,
-                transform: openIndex === index
-                  ? `translateY(-5px) translateX(0px) scale(1.1)`
-                  : `translateY(${index * stackOffsetY}px) translateX(${index * stackOffsetX}px) scale(0.95)`,
-                opacity: openIndex === index ? 1 : 0.8,
-                zIndex: openIndex === index ? 30 : 20 - index,
-                boxShadow: openIndex === index ? `0px 4px 10px ${shadowColor}` : "none",
-              }}
-            >
-              <img
-                src={item.image}
-                alt="Accordion Image"
-                className={`w-full ${height} object-cover rounded-lg`}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Right - Text Accordion */}
       <div className="w-full md:w-1/2 space-y-6">
         {items.map((item, index) => (
           <div
             key={index}
-            className={`relative transition-all duration-${animationDuration} transform rounded-xl overflow-hidden shadow-lg`}
+            className={`relative transition-all duration-${animationDuration} transform rounded-xl overflow-hidden shadow-lg `}
             style={{
               backgroundColor: openIndex === index ? activeHeaderColor : headerColor,
               color: openIndex === index ? activeTextColor : textColor,
@@ -124,9 +96,7 @@ const Accordion2: React.FC<StackAccordionProps> = ({
             </button>
             <div
               className={`relative overflow-hidden transition-all duration-${animationDuration} rounded-lg ${
-                openIndex === index
-                  ? "max-h-96 opacity-100 p-5 border"
-                  : "max-h-0 opacity-0"
+                openIndex === index ? "max-h-96 opacity-100 p-5 border" : "max-h-0 opacity-0"
               }`}
               style={{
                 backgroundColor: bgColor,
@@ -138,6 +108,38 @@ const Accordion2: React.FC<StackAccordionProps> = ({
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Left - Image Stack */}
+      <div
+        className="relative w-full md:w-1/2 flex justify-center items-center"
+        ref={imageContainerRef}
+      >
+        <div className="relative w-full sm:w-[80%]" style={{ height: `${imageHeight}px` }}>
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className={`absolute w-full transition-all duration-${animationDuration} rounded-lg overflow-hidden shadow-xl border`}
+              style={{
+                borderColor: borderColor,
+                top: `${index * stackOffsetY}px`,
+                transform:
+                  openIndex === index
+                    ? `translateY(-5px) translateX(0px) scale(${window.innerWidth < 768 ? 1.01 : 1.1})`
+                    : `translateY(${index * stackOffsetY}px) translateX(${index * stackOffsetX}px) scale(0.95)`,
+                opacity: openIndex === index ? 1 : 0.8,
+                zIndex: openIndex === index ? 30 : 20 - index,
+                boxShadow: openIndex === index ? `0px 4px 10px ${shadowColor}` : "none",
+              }}
+            >
+              <img
+                src={item.image}
+                alt="Accordion"
+                className={`w-full ${height} object-cover rounded-lg`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

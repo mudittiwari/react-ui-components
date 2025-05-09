@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./style.css";
 
 interface AccordionItem {
     title: string;
@@ -33,7 +32,7 @@ const Accordion3: React.FC<StackAccordionProps> = ({
     iconRotate = true,
     animationDuration = 700,
     shadowColor = "#ffeb3b",
-    height = "h-[500px]"
+    height = "h-[500px]",
 }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [rotation, setRotation] = useState(0);
@@ -44,22 +43,65 @@ const Accordion3: React.FC<StackAccordionProps> = ({
     };
 
     return (
-        <div className={`relative w-full max-w-6xl flex flex-col md:flex-row gap-10 items-center p-6 rounded-lg shadow-2xl ${height}`} style={{ background: bgColor }}>
+        <div
+            className={`relative w-full max-w-6xl flex flex-col md:flex-row gap-10 items-center p-6 rounded-lg shadow-2xl ${height} md:pt-0 pt-12`}
+            style={{ background: bgColor }}
+        >
+            {/* Image Rotator */}
             <div className="relative w-full md:w-1/2 flex justify-center items-center">
-                <div className="image-container" style={{ perspective: "1200px", transformStyle: "preserve-3d" }}>
-                    <div className="image-rotator" style={{ transform: `rotateY(${rotation}deg)`, transition: "transform 1s ease-in-out", position: "absolute", top: "50%", left: "50%", transformOrigin: "center", transformStyle: "preserve-3d", translate: "-50% -50%" }}>
+                <div
+                    className="image-container"
+                    style={{
+                        perspective: "1000px",
+                        transformStyle: "preserve-3d",
+                        width: "100%",
+                        maxWidth: "300px",
+                        height: "280px",
+                        position: "relative",
+                    }}
+                >
+                    <div
+                        className="image-rotator"
+                        style={{
+                            transform: `rotateY(${rotation}deg)`,
+                            transition: "transform 1s ease-in-out",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transformOrigin: "center",
+                            transformStyle: "preserve-3d",
+                            translate: "-50% -50%",
+                            width: "100%",
+                            height: "100%",
+                        }}
+                    >
                         {items.map((item, index) => (
                             <div
                                 key={index}
                                 className="image-card"
-                                style={{ transform: `rotateY(${index * (360 / items.length)}deg) translateZ(200px)`, transition: "transform 1s ease-in-out", position: "absolute", top: "50%", left: "50%", transformOrigin: "center", translate: "-50% -50%" }}
+                                style={{
+                                    transition: "transform 1s ease-in-out",
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    transformOrigin: "center",
+                                    translate: "-50% -50%",
+                                    width: "100%",
+                                    transform: `rotateY(${index * (360 / items.length)}deg) translateZ(120px)`, // smaller Z for better mobile handling
+                                }}
                             >
-                                <img src={item.image} alt="Accordion Image" className="object-cover w-[300px] h-[300px] rounded-lg shadow-2xl" />
+                                <img
+                                    src={item.image}
+                                    alt="Accordion Image"
+                                    className="object-cover w-[180px] h-[180px] md:w-[260px] md:h-[260px] rounded-xl shadow-2xl"
+                                />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+
+            {/* Accordion Content */}
             <div className="w-full md:w-1/2 space-y-6">
                 {items.map((item, index) => (
                     <div
@@ -77,15 +119,24 @@ const Accordion3: React.FC<StackAccordionProps> = ({
                             onClick={() => toggleAccordion(index)}
                         >
                             <span className="flex items-center gap-2">
-                                <span className={`text-2xl transition-transform duration-500 ${openIndex === index && iconRotate ? "rotate-180 scale-125" : "scale-100"}`}>
+                                <span
+                                    className={`text-2xl transition-transform duration-500 ${openIndex === index && iconRotate ? "rotate-180 scale-125" : "scale-100"
+                                        }`}
+                                >
                                     {item.icon}
                                 </span>
                                 {item.title}
                             </span>
-                            <span className={`text-xl transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"}`}>⌵</span>
+                            <span
+                                className={`text-xl transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"
+                                    }`}
+                            >
+                                ⌵
+                            </span>
                         </button>
                         <div
-                            className={`relative overflow-hidden transition-all rounded-lg ${openIndex === index ? "max-h-96 opacity-100 p-5 border" : "max-h-0 opacity-0"}`}
+                            className={`relative overflow-hidden transition-all rounded-lg ${openIndex === index ? "max-h-96 opacity-100 p-5 border" : "max-h-0 opacity-0"
+                                }`}
                             style={{
                                 backgroundColor: bgColor,
                                 borderColor: borderColor,

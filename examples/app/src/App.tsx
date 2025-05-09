@@ -316,7 +316,7 @@ function App() {
         <Navbar />
         <div className="flex">
           <Sidebar />
-          <div className="w-full pt-16">
+          <div className="w-full pt-10 md:pt-16">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/react-ui-components" element={<HomePage />} />

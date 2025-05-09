@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Accordion1, Accordion2, Accordion3, Accordion4 } from "react-ui-components-mudittiwari13";
+// import { Accordion1, Accordion2, Accordion3, Accordion4 } from "react-ui-components-mudittiwari13";
+import Accordion1 from "../components/Accordions/Accordion1/Accordion1";
 import CodeBlock from "../components/CodeBlock";
 import { FaCode } from "react-icons/fa";
 import { AccordionCodeSnippets } from "../snipptes/Accordion";
+import Accordion2 from "../components/Accordions/Accordion2/Accordion2";
+import Accordion3 from "../components/Accordions/Accordion3/Accordion3";
+import Accordion4 from "../components/Accordions/Accordion4/Accordion4";
 
 const accordionData = [
   {
@@ -71,7 +75,7 @@ const AccordionsPage: React.FC = () => {
       iconRotate={true}
       animationDuration={500}
       shadowColor="#2563EB"
-      height="h-[500px]"
+      height="h-[850px]"
     />,
     Accordion4: <Accordion4
       items={accordionData}
@@ -84,22 +88,23 @@ const AccordionsPage: React.FC = () => {
       iconRotate={true}
       animationDuration={500}
       shadowColor="#2563EB"
-      height="h-[500px]"
+      height="h-[950px]"
     />,
   };
   return (
-    <div className="p-6 w-[85%] ml-auto">
-      <h1 className="text-3xl font-bold mb-4">Accordions</h1>
+    <div className="p-4 sm:p-6 w-full md:w-[calc(100%-16rem)] ml-auto">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 mt-16 md:mt-0">Accordions</h1>
 
-      {/* Navigation for Selecting Accordions */}
-      <div className="flex space-x-4 mb-6">
+      {/* Navigation Buttons */}
+      <div className="flex flex-wrap gap-4 mb-8">
         {Object.keys(Accordions).map((acc) => (
           <button
             key={acc}
             onClick={() => setSelectedAccordion(acc as keyof typeof Accordions)}
-            className={`px-4 py-2 rounded-lg ${
-              selectedAccordion === acc ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-            }`}
+            className={`px-4 py-2 rounded-lg transition ${selectedAccordion === acc
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
           >
             {acc}
           </button>
@@ -108,42 +113,40 @@ const AccordionsPage: React.FC = () => {
 
       {/* Toggle Code View Button */}
       <button
-        className="absolute top-24 right-6 px-4 py-2 flex items-center space-x-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+        className="fixed md:absolute top-16 right-4 md:top-20 md:right-6 px-4 py-2 flex items-center space-x-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition z-20"
         onClick={() => setShowCode(!showCode)}
       >
         <FaCode className="text-lg" />
-        <span>{showCode ? "Show Demo" : "Show Code"}</span>
+        <span className="hidden sm:inline">{showCode ? "Show Demo" : "Show Code"}</span>
       </button>
-
-      {/* Content (Either Demo or Code) */}
-      <div className="w-full flex bg-gray-100 p-10 rounded-lg shadow-lg">
+      {/* Content Display */}
+      <div className="w-full bg-gray-100 p-1 md:p-6 rounded-lg shadow-lg">
         {!showCode ? (
-          // Display the component demo
-          Accordions[selectedAccordion]
+          <div className="flex justify-center w-full">{Accordions[selectedAccordion]}</div>
         ) : (
-          // Display the code block with tabs
-          <div className="w-full bg-gray-900 text-white p-6 rounded-lg shadow-lg">
-            {/* Tabs for switching between code sections */}
-            <div className="flex space-x-4 mb-4">
+          <div className="w-full bg-gray-900 text-white p-4 sm:p-6 rounded-lg shadow-lg">
+            {/* Tabs */}
+            <div className="flex flex-wrap gap-4 mb-4">
               {["component", "css", "usage"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as "component" | "css" | "usage")}
-                  className={`px-4 py-2 rounded-lg ${
-                    activeTab === tab ? "bg-blue-500 text-white" : "bg-gray-700 hover:bg-gray-600"
-                  }`}
+                  className={`px-4 py-2 rounded-lg transition ${activeTab === tab
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-700 hover:bg-gray-600"
+                    }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)} Code
                 </button>
               ))}
             </div>
-
-            {/* Show Correct Code for the Selected Accordion */}
+            {/* Code Viewer */}
             <CodeBlock code={AccordionCodeSnippets[selectedAccordion][activeTab]} />
           </div>
         )}
       </div>
     </div>
+
   );
 };
 

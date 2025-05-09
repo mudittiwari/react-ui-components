@@ -213,39 +213,48 @@ const ButtonsPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6 w-[85%] ml-auto">
-      <h1 className="text-3xl font-bold mb-4">Buttons</h1>
+    <div className="p-4 sm:p-6 w-full md:w-[calc(100%-16rem)] ml-auto">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 mt-16 md:mt-0">Buttons</h1>
+
       {/* Button Selector */}
-      <div className="flex mb-6 flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 mb-8">
         {Object.keys(Buttons).map((btn) => (
           <button
             key={btn}
             onClick={() => setSelectedButton(btn as keyof typeof Buttons)}
-            className={`px-4 py-2 rounded-lg ${selectedButton === btn ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            className={`px-4 py-2 rounded-lg transition ${selectedButton === btn
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
           >
             {btn}
           </button>
         ))}
       </div>
+
+      {/* Toggle Code View Button */}
       <button
-        className="absolute top-24 right-6 px-4 py-2 flex items-center space-x-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+        className="fixed md:absolute top-16 right-4 md:top-20 md:right-6 px-4 py-2 flex items-center space-x-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition z-20"
         onClick={() => setShowCode(!showCode)}
       >
         <FaCode className="text-lg" />
-        <span>{showCode ? "Show Demo" : "Show Code"}</span>
+        <span className="hidden sm:inline">{showCode ? "Show Demo" : "Show Code"}</span>
       </button>
-      <div className="w-full flex justify-center bg-gray-100 p-10 rounded-lg shadow-lg">
+      {/* Content View */}
+      <div className="w-full bg-gray-100 p-4 sm:p-6 rounded-lg shadow-lg">
         {!showCode ? (
-          Buttons[selectedButton]
+          <div className="w-full flex justify-center">{Buttons[selectedButton]}</div>
         ) : (
-          <div className="w-full bg-gray-900 text-white p-6 rounded-lg shadow-lg">
-            <div className="flex space-x-4 mb-4">
+          <div className="w-full bg-gray-900 text-white p-4 sm:p-6 rounded-lg shadow-lg">
+            {/* Tabs */}
+            <div className="flex flex-wrap gap-4 mb-4">
               {["component", "css", "usage"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as "component" | "css" | "usage")}
-                  className={`px-4 py-2 rounded-lg ${activeTab === tab ? "bg-blue-500 text-white" : "bg-gray-700 hover:bg-gray-600"
+                  className={`px-4 py-2 rounded-lg transition ${activeTab === tab
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-700 hover:bg-gray-600"
                     }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)} Code
@@ -257,6 +266,7 @@ const ButtonsPage: React.FC = () => {
         )}
       </div>
     </div>
+
   );
 };
 

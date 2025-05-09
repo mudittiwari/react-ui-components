@@ -65,16 +65,24 @@ const GameGlowProductCard: React.FC<GameGlowProductCardProps> = ({
     <>
       <style>{`
         .game-card {
-          width: ${width};
-          height: ${height};
-          background: ${backgroundGradient};
+          width: 100%;
+          max-width: ${width};
           border-radius: ${borderRadius};
+          background: ${backgroundGradient};
           overflow: hidden;
           position: relative;
           display: flex;
+          flex-direction: column;
           box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
           transition: transform 0.4s ease, box-shadow 0.4s ease;
           animation: slideInFade 0.7s ease-out;
+        }
+
+        @media (min-width: 768px) {
+          .game-card {
+            flex-direction: row;
+            height: ${height};
+          }
         }
 
         .game-card:hover {
@@ -123,7 +131,14 @@ const GameGlowProductCard: React.FC<GameGlowProductCardProps> = ({
           align-items: flex-end;
           padding: 1rem;
           position: relative;
-          border-right: 2px solid ${buttonShadowColor};
+          border-bottom: 2px solid ${buttonShadowColor};
+        }
+
+        @media (min-width: 768px) {
+          .card-left {
+            border-bottom: none;
+            border-right: 2px solid ${buttonShadowColor};
+          }
         }
 
         .glow-tag {
@@ -143,7 +158,7 @@ const GameGlowProductCard: React.FC<GameGlowProductCardProps> = ({
 
         .card-right {
           flex: 1 1 55%;
-          padding: 1.6rem 1.8rem;
+          padding: 1.5rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -151,34 +166,53 @@ const GameGlowProductCard: React.FC<GameGlowProductCardProps> = ({
         }
 
         .game-title {
-          font-size: 1.6rem;
+          font-size: 1.2rem;
           font-weight: 700;
           color: ${titleColor};
           text-shadow: 0 0 4px ${titleColor}55;
         }
 
+        @media (min-width: 640px) {
+          .game-title {
+            font-size: 1.6rem;
+          }
+        }
+
         .game-description {
           margin-top: 0.5rem;
-          font-size: 0.95rem;
+          font-size: 0.85rem;
           color: ${descriptionColor};
+        }
+
+        @media (min-width: 640px) {
+          .game-description {
+            font-size: 0.95rem;
+          }
         }
 
         .game-footer {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-top: 1.5rem;
         }
 
         .game-price {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           font-weight: bold;
           color: ${priceColor};
           text-shadow: 0 0 4px ${priceColor}55;
         }
 
+        @media (min-width: 640px) {
+          .game-price {
+            font-size: 1.25rem;
+          }
+        }
+
         .buy-button {
-          padding: 0.65rem 1.4rem;
-          font-size: 1rem;
+          padding: 0.6rem 1.2rem;
+          font-size: 0.9rem;
           font-weight: bold;
           background: ${buttonGradient};
           color: ${buttonTextColor};
@@ -188,6 +222,12 @@ const GameGlowProductCard: React.FC<GameGlowProductCardProps> = ({
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
+        }
+
+        @media (min-width: 640px) {
+          .buy-button {
+            font-size: 1rem;
+          }
         }
 
         .buy-button::after {
