@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold tracking-wide">
-          UI Components Library
+        React UI Snippets by Mudit Tiwari
         </Link>
 
         {/* Navigation Links */}

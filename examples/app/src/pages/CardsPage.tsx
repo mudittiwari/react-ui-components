@@ -6,6 +6,11 @@ import { CardCodeSnippets } from "../snipptes/Card";
 import card2bg from "../assets/card1background.jpg";
 import card3bg from "../assets/ecommercecard.png";
 import card1bg from "../assets/Card1bg.webp";
+import VortexMorphProductCard from "../components/Cards/VortexMorphProductCard/VortexMorphProductCard";
+import NovaBurstProductCard from "../components/Cards/NovaBurstProductCard/NovaBurstProductCard";
+import AuroraGlowProductCard from "../components/Cards/AuroraGlowProductCard/AuroraGlowProductCard";
+import MedicalGlowProductCard from "../components/Cards/MedicalGlowProductCard/MedicalGlowProductCard";
+import GameGlowProductCard from "../components/Cards/GameGlowProductCard/GameGlowProductCard";
 
 const CardsPage: React.FC = () => {
   const [selectedCard, setSelectedCard] = useState<keyof typeof CardCodeSnippets>("Card1");
@@ -15,58 +20,208 @@ const CardsPage: React.FC = () => {
   // Mapping components dynamically
   const Cards = {
     Card1: <Card1
-    title="Explore China"
-    description="China is a beautiful country with a rich history, vibrant culture, and stunning landscapes. From the Great Wall to the bustling city of Shanghai, there is much to discover."
-    image={card1bg}
-    width="25rem"
-    height="25rem"
-    rotationDirection="Y"
-    overlayColor="rgba(0, 0, 0, 0.8)"
-    overlayOpacity={0.9}
-  />,
+      title="Explore China"
+      description="China is a beautiful country with a rich history, vibrant culture, and stunning landscapes. From the Great Wall to the bustling city of Shanghai, there is much to discover."
+      image={card1bg}
+      width="25rem"
+      height="25rem"
+      rotationDirection="Y"
+      overlayColor="rgba(0, 0, 0, 0.8)"
+      overlayOpacity={0.9}
+    />,
     Card2: <Card2
-    image={card2bg}
-    title="Dynamic Card"
-    description="This card is fully configurable and reusable."
-    width="w-96"
-    height="h-96"
-    titleFontSize="text-2xl"
-    descriptionFontSize="text-base"
-  />,
+      image={card2bg}
+      title="Dynamic Card"
+      description="This card is fully configurable and reusable."
+      width="w-96"
+      height="h-96"
+      titleFontSize="text-2xl"
+      descriptionFontSize="text-base"
+    />,
     Card3: <Card3
-    image={card3bg}
-    title="Luxury Sneakers"
-    description="Step into the ultimate comfort and style."
-    price="$250"
-    sizes={["S", "M", "L", "XL", "XXL"]}
-    initialQuantity={1}
-    maxQuantity={5}
-    rating={4}
-    totalReviews={300}
-    buttonText="Buy Now"
-    width="w-96"
-    height="h-96"
-    backgroundColor="bg-gradient-to-l from-green-400 via-blue-500 to-purple-600"
-    onAddToCart={() => {
-      alert("hello world");
-    }}
-  />,
+      image={card3bg}
+      title="Luxury Sneakers"
+      description="Step into the ultimate comfort and style."
+      price="$250"
+      sizes={["S", "M", "L", "XL", "XXL"]}
+      initialQuantity={1}
+      maxQuantity={5}
+      rating={4}
+      totalReviews={300}
+      buttonText="Buy Now"
+      width="w-96"
+      height="h-96"
+      backgroundColor="bg-gradient-to-l from-green-400 via-blue-500 to-purple-600"
+      onAddToCart={() => {
+        alert("hello world");
+      }}
+    />,
     Card4: <Card4 image="https://via.placeholder.com/300" name="John Doe" designation="CEO, TechCorp" message="Great product!" />,
+    NovaBurstProductCard: (
+      <div className="w-full py-16"
+        style={{
+          background: "radial-gradient(circle at center, #0f0c29, #1a1a2e, #000)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <NovaBurstProductCard
+          image="https://images.unsplash.com/photo-1632803227975-b6a5688c9c46?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Nova Speaker Max"
+          description="A 360° immersive audio system with reactive RGB flare and spatial clarity."
+          price="$299"
+          glowColor="#f472b6"
+          backgroundColor="#0f172a"
+          titleColor="#fefce8"
+          descriptionColor="#fbcfe8"
+          priceColor="#fb7185"
+          buttonGradient="linear-gradient(to right, #ec4899, #db2777)"
+          buttonShadowColor="#f472b6"
+          borderRadius="24px"
+          width="380px"
+          height="560px"
+          particleCount={20}
+          onBuyClick={() => alert("Nova Speaker Max added to cart!")}
+        />
+      </div>
+    ),
+    MedicalGlowProductCard: (
+      <div className="w-full py-16"
+        style={{
+          background: "linear-gradient(135deg, #e0f2f1 0%, #ffffff 40%, #c8e6c9 100%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "2rem",
+        }}
+      >
+        <MedicalGlowProductCard
+          image="https://images.unsplash.com/photo-1560977501-7cb367eccebe?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Smart Health Thermometer"
+          description="Accurately track body temperature in real-time. Bluetooth-enabled with mobile sync and alerts."
+          price="$89.99"
+          backgroundGradient="linear-gradient(135deg, #ffffff, #e0f7fa, #c8e6c9)"
+          titleColor="#0d47a1"
+          descriptionColor="#4f5b62"
+          priceColor="#00796b"
+          cardShadowColor="rgba(0, 150, 136, 0.2)"
+          particlePrimaryColor="#81d4fa"
+          particleSecondaryColor="#aed581"
+          buttonGradient="linear-gradient(to right, #26c6da, #66bb6a)"
+          buttonShadowColor="#26a69a"
+          borderRadius="24px"
+          particleCount={30}
+          width="400px"
+          height="560px"
+          onBuyClick={() => alert("🛒 Smart Health Thermometer added to cart!")}
+        />
+      </div>
+    ),
+    GameGlowProductCard: (
+      <div className="w-full py-16"
+        style={{
+          background: "linear-gradient(135deg, #0d0d0d 0%, #1a1f2b 50%, #101018 100%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "3rem",
+          boxSizing: "border-box",
+        }}
+      >
+
+        <GameGlowProductCard
+          image="https://images.unsplash.com/photo-1543622748-5ee7237e8565?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Neon Strike: Override"
+          description="Hack the grid, race through neon-lit tunnels, and battle rogue AI in this electrifying cyberpunk shooter."
+          price="$49.99"
+          buttonText="Download Now"
+          onBuyClick={() => alert("🕹️ Neon Strike: Override added to library!")}
+          width="680px"
+          height="300px"
+          borderRadius="24px"
+          particleCount={18}
+        />
+      </div>
+    ),
+    AuroraGlowProductCard: (
+      <div className="w-full py-16"
+        style={{
+          background: "linear-gradient(135deg, #140e27 0%, #1e0029 40%, #3c1a00 100%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "2rem",
+        }}
+      >
+        <AuroraGlowProductCard
+          image="https://images.unsplash.com/photo-1632803227975-b6a5688c9c46?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Aurora Beam Headphones"
+          description="Immersive sound powered by spatial acoustics and reactive aurora visuals. Noise-canceling + ultra clarity."
+          price="$349"
+          backgroundGradient="linear-gradient(135deg, #1f1c2c, #8e2de2, #f27121)"
+          titleColor="#fff7ed"
+          descriptionColor="#fde68a"
+          priceColor="#fbbf24"
+          cardShadowColor="rgba(251, 191, 36, 0.2)"
+          particlePrimaryColor="#facc15"
+          particleSecondaryColor="#fcd34d"
+          buttonGradient="linear-gradient(to right, #f59e0b, #f97316)"
+          buttonShadowColor="#facc15"
+          borderRadius="26px"
+          particleCount={20}
+          width="400px"
+          height="560px"
+          onBuyClick={() => alert("🛒 Aurora Beam Headphones added to cart!")}
+        />
+      </div>
+    ),
+    VortexMorphProductCard: (
+      <div className="w-full py-16"
+        style={{
+          background: 'radial-gradient(circle at center, #030712, #0f172a, #1e293b)',
+          padding: '4rem',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <VortexMorphProductCard
+          image="https://images.unsplash.com/photo-1632803227975-b6a5688c9c46?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          title="Nebula X Drone"
+          description="AI-enhanced aerial drone with 4K streaming and autonomous navigation."
+          price="$999"
+          onBuyClick={() => alert('🛒 Nebula X added to cart!')}
+          glowColor="#60a5fa"
+          backgroundColor="#0f172a"
+          borderRadius="1.75rem"
+          titleColor="#e0f2fe"
+          descriptionColor="#cbd5e1"
+          priceColor="#3b82f6"
+          buttonGradient="linear-gradient(to right, #3b82f6, #06b6d4)"
+          buttonShadowColor="#60a5fa"
+          width="380px"
+          height="560px"
+        />
+      </div>
+    )
   };
 
   return (
     <div className="p-6 w-[85%] ml-auto">
-      <h1 className="text-3xl font-bold mb-4">Cards</h1>
 
+
+
+
+      <h1 className="text-3xl font-bold mb-4">Cards</h1>
       {/* Navigation for Selecting Cards */}
-      <div className="flex space-x-4 mb-6">
+      <div className="flex flex-wrap gap-6 mb-6">
         {Object.keys(Cards).map((card) => (
           <button
             key={card}
             onClick={() => setSelectedCard(card as keyof typeof Cards)}
-            className={`px-4 py-2 rounded-lg ${
-              selectedCard === card ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-            }`}
+            className={`px-4 py-2 rounded-lg ${selectedCard === card ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              }`}
           >
             {card}
           </button>
@@ -96,9 +251,8 @@ const CardsPage: React.FC = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as "component" | "css" | "usage")}
-                  className={`px-4 py-2 rounded-lg ${
-                    activeTab === tab ? "bg-blue-500 text-white" : "bg-gray-700 hover:bg-gray-600"
-                  }`}
+                  className={`px-4 py-2 rounded-lg ${activeTab === tab ? "bg-blue-500 text-white" : "bg-gray-700 hover:bg-gray-600"
+                    }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)} Code
                 </button>
