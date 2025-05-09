@@ -100,15 +100,15 @@ const MedicalGlowProductCard: React.FC<MedicalGlowProductCardProps> = ({
           width: 12px;
           height: 12px;
           background: ${particlePrimaryColor};
-          opacity: 0.3;
+          opacity: 0.4;
           transform: rotate(45deg);
           animation: floatCross 10s ease-in-out infinite;
         }
 
         @keyframes floatCross {
-          0% { transform: translate(0, 0) rotate(45deg); opacity: 0.3; }
-          50% { transform: translate(10px, -20px) rotate(90deg); opacity: 0.6; }
-          100% { transform: translate(-10px, -40px) rotate(135deg); opacity: 0.2; }
+          0% { transform: translate(0, 0) rotate(45deg); opacity: 0.4; }
+          50% { transform: translate(10px, -20px) rotate(90deg); opacity: 0.7; }
+          100% { transform: translate(-10px, -40px) rotate(135deg); opacity: 0.3; }
         }
 
         .medical-content {

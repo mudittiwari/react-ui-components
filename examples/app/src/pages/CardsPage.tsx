@@ -58,7 +58,7 @@ const CardsPage: React.FC = () => {
     />,
     Card4: <Card4 image="https://via.placeholder.com/300" name="John Doe" designation="CEO, TechCorp" message="Great product!" />,
     NovaBurstProductCard: (
-      <div className="w-full py-16"
+      <div className="w-full py-20"
         style={{
           background: "radial-gradient(circle at center, #0f0c29, #1a1a2e, #000)",
           display: "flex",
@@ -67,7 +67,7 @@ const CardsPage: React.FC = () => {
         }}
       >
         <NovaBurstProductCard
-          image="https://images.unsplash.com/photo-1632803227975-b6a5688c9c46?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          image="https://images.unsplash.com/photo-1594991523303-a54f2722dc3c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           title="Nova Speaker Max"
           description="A 360° immersive audio system with reactive RGB flare and spatial clarity."
           price="$299"
@@ -82,12 +82,12 @@ const CardsPage: React.FC = () => {
           width="380px"
           height="560px"
           particleCount={20}
-          onBuyClick={() => alert("Nova Speaker Max added to cart!")}
+          onBuyClick={() => alert("added to cart!")}
         />
       </div>
     ),
     MedicalGlowProductCard: (
-      <div className="w-full py-16"
+      <div className="w-full py-20"
         style={{
           background: "linear-gradient(135deg, #e0f2f1 0%, #ffffff 40%, #c8e6c9 100%)",
           display: "flex",
@@ -97,9 +97,9 @@ const CardsPage: React.FC = () => {
         }}
       >
         <MedicalGlowProductCard
-          image="https://images.unsplash.com/photo-1560977501-7cb367eccebe?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          image="https://images.unsplash.com/photo-1585207693488-a903901c1274?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRoZXJtb21ldGVyfGVufDB8fDB8fHww"
           title="Smart Health Thermometer"
-          description="Accurately track body temperature in real-time. Bluetooth-enabled with mobile sync and alerts."
+          description="Accurately track body temperature in real-time. Bluetooth-enabled with mobile sync, alerts and real time updates."
           price="$89.99"
           backgroundGradient="linear-gradient(135deg, #ffffff, #e0f7fa, #c8e6c9)"
           titleColor="#0d47a1"
@@ -111,21 +111,20 @@ const CardsPage: React.FC = () => {
           buttonGradient="linear-gradient(to right, #26c6da, #66bb6a)"
           buttonShadowColor="#26a69a"
           borderRadius="24px"
-          particleCount={30}
+          particleCount={20}
           width="400px"
           height="560px"
-          onBuyClick={() => alert("🛒 Smart Health Thermometer added to cart!")}
+          onBuyClick={() => alert("added to cart!")}
         />
       </div>
     ),
     GameGlowProductCard: (
-      <div className="w-full py-16"
+      <div className="w-full py-32"
         style={{
           background: "linear-gradient(135deg, #0d0d0d 0%, #1a1f2b 50%, #101018 100%)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          padding: "3rem",
           boxSizing: "border-box",
         }}
       >
@@ -136,7 +135,7 @@ const CardsPage: React.FC = () => {
           description="Hack the grid, race through neon-lit tunnels, and battle rogue AI in this electrifying cyberpunk shooter."
           price="$49.99"
           buttonText="Download Now"
-          onBuyClick={() => alert("🕹️ Neon Strike: Override added to library!")}
+          onBuyClick={() => alert("added to cart")}
           width="680px"
           height="300px"
           borderRadius="24px"
@@ -145,39 +144,40 @@ const CardsPage: React.FC = () => {
       </div>
     ),
     AuroraGlowProductCard: (
-      <div className="w-full py-16"
+      <div className="w-full py-20"
         style={{
-          background: "linear-gradient(135deg, #140e27 0%, #1e0029 40%, #3c1a00 100%)",
+          background: "linear-gradient(135deg, #fff7ed, #fde68a, #f97316)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           padding: "2rem",
+          boxShadow: "inset 0 0 80px rgba(0,0,0,0.05)",
         }}
       >
         <AuroraGlowProductCard
-          image="https://images.unsplash.com/photo-1632803227975-b6a5688c9c46?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           title="Aurora Beam Headphones"
-          description="Immersive sound powered by spatial acoustics and reactive aurora visuals. Noise-canceling + ultra clarity."
+          description="Experience golden-hour listening — crisp, balanced, and elegant music with this headphone at a very low price."
           price="$349"
-          backgroundGradient="linear-gradient(135deg, #1f1c2c, #8e2de2, #f27121)"
-          titleColor="#fff7ed"
-          descriptionColor="#fde68a"
-          priceColor="#fbbf24"
-          cardShadowColor="rgba(251, 191, 36, 0.2)"
-          particlePrimaryColor="#facc15"
-          particleSecondaryColor="#fcd34d"
-          buttonGradient="linear-gradient(to right, #f59e0b, #f97316)"
-          buttonShadowColor="#facc15"
-          borderRadius="26px"
-          particleCount={20}
+          backgroundGradient="linear-gradient(135deg, #fef3c7, #fcd34d, #fb923c)"
+          titleColor="#78350f"
+          descriptionColor="#92400e"
+          priceColor="#b45309"
+          cardShadowColor="rgba(234, 88, 12, 0.25)"
+          particlePrimaryColor="#ffffff"
+          particleSecondaryColor="#b45309"
+          buttonGradient="linear-gradient(to right, #fbbf24, #f97316)"
+          buttonShadowColor="#f59e0b"
+          borderRadius="24px"
+          particleCount={14}
           width="400px"
           height="560px"
-          onBuyClick={() => alert("🛒 Aurora Beam Headphones added to cart!")}
+          onBuyClick={() => alert("added to cart")}
         />
       </div>
     ),
     VortexMorphProductCard: (
-      <div className="w-full py-16"
+      <div className="w-full py-20"
         style={{
           background: 'radial-gradient(circle at center, #030712, #0f172a, #1e293b)',
           padding: '4rem',
@@ -187,11 +187,11 @@ const CardsPage: React.FC = () => {
         }}
       >
         <VortexMorphProductCard
-          image="https://images.unsplash.com/photo-1632803227975-b6a5688c9c46?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          image="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           title="Nebula X Drone"
-          description="AI-enhanced aerial drone with 4K streaming and autonomous navigation."
+          description="AI-enhanced aerial drone with 4K streaming and autonomous navigation  and some other security features available at a very low price."
           price="$999"
-          onBuyClick={() => alert('🛒 Nebula X added to cart!')}
+          onBuyClick={() => alert('added to cart!')}
           glowColor="#60a5fa"
           backgroundColor="#0f172a"
           borderRadius="1.75rem"
@@ -201,7 +201,7 @@ const CardsPage: React.FC = () => {
           buttonGradient="linear-gradient(to right, #3b82f6, #06b6d4)"
           buttonShadowColor="#60a5fa"
           width="380px"
-          height="560px"
+          height="520px"
         />
       </div>
     )

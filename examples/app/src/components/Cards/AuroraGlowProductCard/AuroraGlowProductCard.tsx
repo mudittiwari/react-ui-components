@@ -1,76 +1,76 @@
 import React, { useRef, useEffect } from "react";
 
 interface AuroraGlowProductCardProps {
-    image: string;
-    title: string;
-    description: string;
-    price: string;
-    onBuyClick?: () => void;
-    backgroundGradient?: string;
-    titleColor?: string;
-    descriptionColor?: string;
-    priceColor?: string;
-    cardShadowColor?: string;
-    particlePrimaryColor?: string;
-    particleSecondaryColor?: string;
-    buttonGradient?: string;
-    buttonShadowColor?: string;
-    borderRadius?: string;
-    particleCount?: number;
-    width?: string;
-    height?: string;
+  image: string;
+  title: string;
+  description: string;
+  price: string;
+  onBuyClick?: () => void;
+  backgroundGradient?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+  priceColor?: string;
+  cardShadowColor?: string;
+  particlePrimaryColor?: string;
+  particleSecondaryColor?: string;
+  buttonGradient?: string;
+  buttonShadowColor?: string;
+  borderRadius?: string;
+  particleCount?: number;
+  width?: string;
+  height?: string;
 }
 
 const AuroraGlowProductCard: React.FC<AuroraGlowProductCardProps> = ({
-    image,
-    title,
-    description,
-    price,
-    onBuyClick,
-    backgroundGradient = "linear-gradient(135deg, #0f0c29, #302b63, #1a1a2e)",
-    titleColor = "#ffffff",
-    descriptionColor = "#cbd5e1",
-    priceColor = "#60a5fa",
-    cardShadowColor = "rgba(99, 102, 241, 0.25)",
-    particlePrimaryColor = "#60a5fa",
-    particleSecondaryColor = "#22d3ee",
-    buttonGradient = "linear-gradient(to right, #6366f1, #a855f7)",
-    buttonShadowColor = "#7c3aed",
-    borderRadius = "24px",
-    particleCount = 12,
-    width = "360px",
-    height = "540px",
+  image,
+  title,
+  description,
+  price,
+  onBuyClick,
+  backgroundGradient = "linear-gradient(135deg, #0f0c29, #302b63, #1a1a2e)",
+  titleColor = "#ffffff",
+  descriptionColor = "#cbd5e1",
+  priceColor = "#60a5fa",
+  cardShadowColor = "rgba(99, 102, 241, 0.25)",
+  particlePrimaryColor = "#60a5fa",
+  particleSecondaryColor = "#22d3ee",
+  buttonGradient = "linear-gradient(to right, #6366f1, #a855f7)",
+  buttonShadowColor = "#7c3aed",
+  borderRadius = "24px",
+  particleCount = 12,
+  width = "360px",
+  height = "540px",
 }) => {
-    const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const card = cardRef.current;
-        if (!card) return;
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
 
-        const handleMouseMove = (e: MouseEvent) => {
-            const rect = card.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-            const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
-            card.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
-        };
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+      card.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
+    };
 
-        const resetTilt = () => {
-            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-        };
+    const resetTilt = () => {
+      card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    };
 
-        card.addEventListener("mousemove", handleMouseMove);
-        card.addEventListener("mouseleave", resetTilt);
+    card.addEventListener("mousemove", handleMouseMove);
+    card.addEventListener("mouseleave", resetTilt);
 
-        return () => {
-            card.removeEventListener("mousemove", handleMouseMove);
-            card.removeEventListener("mouseleave", resetTilt);
-        };
+    return () => {
+      card.removeEventListener("mousemove", handleMouseMove);
+      card.removeEventListener("mouseleave", resetTilt);
+    };
 
-    }, []);
+  }, []);
 
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
 .aurora-card {
 width: ${width};
 height: ${height};
@@ -99,7 +99,7 @@ animation: floatBounce 5s ease-in-out infinite alternate;
       background: repeating-conic-gradient(from 0deg, ${particlePrimaryColor} 0deg, ${particlePrimaryColor} 30deg, transparent 30deg, transparent 60deg);
       animation: rotateTrail 12s linear infinite;
       mix-blend-mode: screen;
-      opacity: 0.05;
+      opacity: 0.1;
       z-index: 0;
     }
 
@@ -196,33 +196,33 @@ animation: floatBounce 5s ease-in-out infinite alternate;
     }
   `}</style>
 
-            <div className="aurora-card" ref={cardRef}>
-                <div className="aura-trail" />
-                {[...Array(particleCount)].map((_, i) => (
-                    <span
-                        key={i}
-                        className="wave-particle"
-                        style={{
-                            top: `${Math.random() * 90 + 5}%`,
-                            left: `${Math.random() * 90 + 5}%`,
-                            animationDelay: `${Math.random() * 4}s`,
-                            animationDuration: `${6 + Math.random() * 6}s`,
-                        }}
-                    />
-                ))}
-                <div className="aurora-content">
-                    <img src={image} alt={title} className="aurora-image" />
-                    <div className="aurora-details">
-                        <h2 className="aurora-title">{title}</h2>
-                        <p className="aurora-description">{description}</p>
-                        <p className="aurora-price">{price}</p>
-                        <button className="buy-button-aurora" onClick={onBuyClick}>Buy Now</button>
-                    </div>
-                </div>
-            </div>
-        </>
+      <div className="aurora-card" ref={cardRef}>
+        <div className="aura-trail" />
+        {[...Array(particleCount)].map((_, i) => (
+          <span
+            key={i}
+            className="wave-particle"
+            style={{
+              top: `${Math.random() * 90 + 5}%`,
+              left: `${Math.random() * 90 + 5}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${6 + Math.random() * 6}s`,
+            }}
+          />
+        ))}
+        <div className="aurora-content">
+          <img src={image} alt={title} className="aurora-image" />
+          <div className="aurora-details">
+            <h2 className="aurora-title">{title}</h2>
+            <p className="aurora-description">{description}</p>
+            <p className="aurora-price">{price}</p>
+            <button className="buy-button-aurora" onClick={onBuyClick}>Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </>
 
-    );
+  );
 };
 
 export default AuroraGlowProductCard;
