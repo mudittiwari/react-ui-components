@@ -7,6 +7,10 @@ import { AccordionCodeSnippets } from "../snipptes/Accordion";
 import Accordion2 from "../components/Accordions/Accordion2/Accordion2";
 import Accordion3 from "../components/Accordions/Accordion3/Accordion3";
 import Accordion4 from "../components/Accordions/Accordion4/Accordion4";
+import Accordion5 from "../components/Accordions/Accordion5/Accordion5";
+import Accordion6 from "../components/Accordions/Accordion6/Accordion6";
+import Accordion7 from "../components/Accordions/Accordion7/Accordion7";
+import Accordion8 from "../components/Accordions/Accordion8/Accordion8";
 
 const accordionData = [
   {
@@ -90,9 +94,175 @@ const AccordionsPage: React.FC = () => {
       shadowColor="#2563EB"
       height="h-[950px]"
     />,
+    Accordion5: (
+      <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] px-4">
+        <Accordion5
+          items={accordionData}
+          bgColor="rgba(255,255,255,0.02)"
+          activeColor="#0ff"
+          textColor="#00f7ff"
+          activeTextColor="#111827"
+          iconColor="#00ffe1"
+          toggleIcon="▾"
+          toggleIconColor="#0ff"
+          height="h-auto"
+          rounded="rounded-xl"
+          blur={true}
+          shadowColor="#00fff066"
+          activeShadowColor="#00ffe1"
+          transitionDuration={800}
+          maxContentHeight="max-h-96"
+          iconRotation={true}
+          iconScale={true}
+          contentAnimation="fade"
+          padding="p-4"
+          fontSize="text-lg"
+          spacing="mb-5"
+        />
+      </div>
+    ),
+    Accordion6: (
+      <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black px-4">
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#00ffe1_10%,_transparent_70%)] opacity-20 animate-pulse absolute" />
+          <div className="w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_#1e90ff_10%,_transparent_70%)] opacity-20 animate-pulse delay-1000 absolute" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a0a] to-black opacity-80" />
+        </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto rounded-[2rem] border border-cyan-400/10 bg-white/5 backdrop-blur-xl shadow-[0_0_60px_#00ffe180] transition-all duration-700 px-6 py-10 sm:px-10 sm:py-14">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-cyan-200 drop-shadow-[0_0_8px_#00ffe1] tracking-tight animate-fade-slide">
+              Explore the Future
+            </h1>
+            <p className="text-cyan-100/80 mt-3 text-sm sm:text-base tracking-wide">
+              Tap on a panel to unveil more
+            </p>
+          </div>
+          <Accordion6
+            items={accordionData}
+            height="h-[520px]"
+            rounded="rounded-3xl"
+            textColor="#d2faff"
+            activeTextColor="#ffffff"
+            overlayColor="rgba(0, 0, 0, 0.4)"
+            activeGlowColor="#00ffe1"
+            transitionDuration={800}
+          />
+        </div>
+      </div>
+    ),
+    Accordion7: (
+      <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0a0020] via-[#14002e] to-[#050011] px-4 py-20 overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,_#ff00d4_0%,_transparent_70%)] top-[-150px] left-[-180px] opacity-30 blur-3xl animate-pulse" />
+          <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,_#8a2be2_0%,_transparent_70%)] bottom-[-150px] right-[-160px] opacity-25 blur-2xl animate-pulse delay-1000" />
+        </div>
+        <div className="relative z-10 w-full max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_60px_rgba(255,0,200,0.08)] md:px-6 md:py-10 px-2 py-12">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-500 via-fuchsia-400 to-purple-500 text-transparent bg-clip-text drop-shadow-[0_0_14px_#ff00d4cc]">
+              Unlock the Future of Intelligence
+            </h1>
+            <p className="mt-2 text-pink-200/80 text-sm sm:text-base tracking-wide">
+              Dive into next-gen healthcare and AI breakthroughs.
+            </p>
+          </div>
+          <Accordion7
+            items={accordionData}
+            textColor="#f5d9ff"
+            activeTextColor="#ffffff"
+            overlayColor="rgba(20, 0, 50, 0.25)"
+            glowColor="#ff00d4"
+            transitionDuration={700}
+            rounded="rounded-3xl"
+            titleFontSize="md:text-3xl text-xl"
+            contentFontSize="md:text-base text-sm"
+            contentPadding="p-8 sm:p-10"
+            blurAmount={4}
+            titleGradient={true}
+          />
+
+        </div>
+      </div>
+
+    ),
+    Accordion8: (
+      <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0a0015] via-[#120021] to-[#050011] px-4 py-20 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,_#ff00d466_0%,_transparent_70%)] top-[-180px] left-[-200px] opacity-30 blur-3xl animate-pulse" />
+          <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,_#8a2be2_0%,_transparent_70%)] bottom-[-140px] right-[-160px] opacity-25 blur-2xl animate-pulse delay-1000" />
+        </div>
+        <div className="relative z-10 w-full max-w-6xl rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_60px_rgba(255,0,200,0.1)] md:px-6 md:py-12 px-0 py-10">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-500 via-fuchsia-400 to-purple-500 text-transparent bg-clip-text drop-shadow-[0_0_18px_#ff00d4cc]">
+              Explore the Future of Care
+            </h1>
+            <p className="mt-3 text-pink-200/80 text-sm sm:text-base tracking-wide max-w-2xl mx-auto">
+              Interactive intelligence layers designed for diagnostics, decision-making, and deep insights.
+            </p>
+          </div>
+          <Accordion8
+            items={accordionData}
+            textColor="#ffe5f8"
+            activeTextColor="#ffffff"
+            glowColor="#ff00d4"
+            overlayColor="rgba(20,0,40,0.4)"
+            backgroundColor="rgba(255, 255, 255, 0.03)"
+            borderColor="#ffffff22"
+            transitionDuration={600}
+            rounded="rounded-3xl"
+            titleFontSize="text-base sm:text-lg md:text-xl"
+            contentFontSize="text-xs sm:text-sm md:text-base"
+            contentPadding="p-6 sm:p-10"
+            blurAmount={16}
+            titleGradient={true}
+          />
+        </div>
+      </div>
+    )
   };
   return (
-    <div className="p-4 sm:p-6 w-full md:w-[calc(100%-16rem)] ml-auto">
+    <div className="p-4 md:p-6 w-full md:w-[calc(100%-16rem)] ml-auto">
+
+
+      {/* <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black px-4">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#00ffe1,_#00bfff,_transparent_70%)] opacity-30 animate-pulse blur-3xl" />
+          <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_#d946ef,_#9333ea,_transparent_70%)] opacity-25 animate-pulse blur-2xl delay-1000" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#050d17] via-[#0a0a2f] to-[#050011] opacity-90" />
+        </div>
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto rounded-[2rem] border border-cyan-300/10 bg-white/5 backdrop-blur-2xl shadow-[0_0_80px_#00fff088] transition-all duration-700 px-6 py-10 sm:px-10 sm:py-14">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 via-teal-200 to-white text-transparent bg-clip-text drop-shadow-[0_0_12px_#00fff0cc] tracking-tight animate-fade-slide">
+              Explore the Future
+            </h1>
+            <p className="text-cyan-100/80 mt-3 text-sm sm:text-base tracking-wide max-w-xl mx-auto">
+              Tap on a panel to unveil more
+            </p>
+          </div>
+          <Accordion6
+            items={accordionData}
+            height="h-[520px]"
+            rounded="rounded-3xl"
+            textColor="#d2faff"
+            activeTextColor="#ffffff"
+            overlayColor="rgba(0, 20, 40, 0.4)"
+            activeGlowColor="#00ffe1"
+            transitionDuration={800}
+          />
+        </div>
+      </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
       <h1 className="text-2xl sm:text-3xl font-bold mb-4 mt-16 md:mt-0">Accordions</h1>
 
       {/* Navigation Buttons */}
