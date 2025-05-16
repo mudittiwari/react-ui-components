@@ -124,16 +124,17 @@ const AccordionsPage: React.FC = () => {
     Accordion6: (
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black px-4">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#00ffe1_10%,_transparent_70%)] opacity-20 animate-pulse absolute" />
-          <div className="w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_#1e90ff_10%,_transparent_70%)] opacity-20 animate-pulse delay-1000 absolute" />
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a0a] to-black opacity-80" />
+          <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#00ffe1,_#00bfff,_transparent_70%)] opacity-30 animate-pulse blur-3xl" />
+          <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_#d946ef,_#9333ea,_transparent_70%)] opacity-25 animate-pulse blur-2xl delay-1000" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#050d17] via-[#0a0a2f] to-[#050011] opacity-90" />
         </div>
-        <div className="relative z-10 w-full max-w-7xl mx-auto rounded-[2rem] border border-cyan-400/10 bg-white/5 backdrop-blur-xl shadow-[0_0_60px_#00ffe180] transition-all duration-700 px-6 py-10 sm:px-10 sm:py-14">
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto rounded-[2rem] border border-cyan-300/10 bg-white/5 backdrop-blur-2xl shadow-[0_0_80px_#00fff088] transition-all duration-700 px-6 py-10 sm:px-10 sm:py-14">
           <div className="text-center mb-10">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-cyan-200 drop-shadow-[0_0_8px_#00ffe1] tracking-tight animate-fade-slide">
+            <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 via-teal-200 to-white text-transparent bg-clip-text drop-shadow-[0_0_12px_#00fff0cc] tracking-tight animate-fade-slide">
               Explore the Future
             </h1>
-            <p className="text-cyan-100/80 mt-3 text-sm sm:text-base tracking-wide">
+            <p className="text-cyan-100/80 mt-3 text-sm sm:text-base tracking-wide max-w-xl mx-auto">
               Tap on a panel to unveil more
             </p>
           </div>
@@ -143,7 +144,7 @@ const AccordionsPage: React.FC = () => {
             rounded="rounded-3xl"
             textColor="#d2faff"
             activeTextColor="#ffffff"
-            overlayColor="rgba(0, 0, 0, 0.4)"
+            overlayColor="rgba(0, 20, 40, 0.4)"
             activeGlowColor="#00ffe1"
             transitionDuration={800}
           />
@@ -221,51 +222,7 @@ const AccordionsPage: React.FC = () => {
   };
   return (
     <div className="p-4 md:p-6 w-full md:w-[calc(100%-16rem)] ml-auto">
-
-
-      {/* <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black px-4">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#00ffe1,_#00bfff,_transparent_70%)] opacity-30 animate-pulse blur-3xl" />
-          <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_#d946ef,_#9333ea,_transparent_70%)] opacity-25 animate-pulse blur-2xl delay-1000" />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#050d17] via-[#0a0a2f] to-[#050011] opacity-90" />
-        </div>
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto rounded-[2rem] border border-cyan-300/10 bg-white/5 backdrop-blur-2xl shadow-[0_0_80px_#00fff088] transition-all duration-700 px-6 py-10 sm:px-10 sm:py-14">
-          <div className="text-center mb-10">
-            <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 via-teal-200 to-white text-transparent bg-clip-text drop-shadow-[0_0_12px_#00fff0cc] tracking-tight animate-fade-slide">
-              Explore the Future
-            </h1>
-            <p className="text-cyan-100/80 mt-3 text-sm sm:text-base tracking-wide max-w-xl mx-auto">
-              Tap on a panel to unveil more
-            </p>
-          </div>
-          <Accordion6
-            items={accordionData}
-            height="h-[520px]"
-            rounded="rounded-3xl"
-            textColor="#d2faff"
-            activeTextColor="#ffffff"
-            overlayColor="rgba(0, 20, 40, 0.4)"
-            activeGlowColor="#00ffe1"
-            transitionDuration={800}
-          />
-        </div>
-      </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
       <h1 className="text-2xl sm:text-3xl font-bold mb-4 mt-16 md:mt-0">Accordions</h1>
-
-      {/* Navigation Buttons */}
       <div className="flex flex-wrap gap-4 mb-8">
         {Object.keys(Accordions).map((acc) => (
           <button
@@ -280,8 +237,6 @@ const AccordionsPage: React.FC = () => {
           </button>
         ))}
       </div>
-
-      {/* Toggle Code View Button */}
       <button
         className="fixed md:absolute top-16 right-4 md:top-20 md:right-6 px-4 py-2 flex items-center space-x-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition z-20"
         onClick={() => setShowCode(!showCode)}
@@ -289,7 +244,6 @@ const AccordionsPage: React.FC = () => {
         <FaCode className="text-lg" />
         <span className="hidden sm:inline">{showCode ? "Show Demo" : "Show Code"}</span>
       </button>
-      {/* Content Display */}
       <div className="w-full bg-gray-100 p-1 md:p-6 rounded-lg shadow-lg">
         {!showCode ? (
           <div className="flex justify-center w-full">{Accordions[selectedAccordion]}</div>
@@ -310,7 +264,6 @@ const AccordionsPage: React.FC = () => {
                 </button>
               ))}
             </div>
-            {/* Code Viewer */}
             <CodeBlock code={AccordionCodeSnippets[selectedAccordion][activeTab]} />
           </div>
         )}

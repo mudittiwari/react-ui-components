@@ -14,8 +14,11 @@ Quickly integrate beautiful UI elements into your projects and save development 
 npm i react-ui-components-mudittiwari13
 ```
 
+## Visit Website
+[webiste](https://mudittiwari.github.io/react-ui-components/)
 
-## Table of Contents
+
+<!-- ## Table of Contents
 - [Buttons](#buttons)
 - [Cards](#cards)
 - [Accordions](#accordions)
@@ -674,4 +677,4 @@ const accordionData = [
   );
 };
 
-```
+``` -->
