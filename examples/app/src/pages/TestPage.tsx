@@ -191,21 +191,21 @@ export default function CallStackArena() {
 
     const pop = (name: string) => {
         setTimeout(() => {
-          setStack(prev => {
-            const updated = prev.filter(f => f.name !== name);
-            if (updated.length > 0) {
-              const top = updated[updated.length - 1].name;
-              setCurrentAction(`${top} is executing...`);
-              highlight(top);
-            } else {
-              setCurrentAction(`All functions have completed.`);
-              setShowTagline(true);
-            }
-            return updated;
-          });
-          delete activeRef.current[name];
+            setStack(prev => {
+                const updated = prev.filter(f => f.name !== name);
+                if (updated.length > 0) {
+                    const top = updated[updated.length - 1].name;
+                    setCurrentAction(`${top} is executing...`);
+                    highlight(top);
+                } else {
+                    setCurrentAction(`All functions have completed.`);
+                    setShowTagline(true);
+                }
+                return updated;
+            });
+            delete activeRef.current[name];
         }, 1000);
-      };
+    };
 
     const resume = () => {
         if (!currentBlocked) return;
@@ -227,7 +227,9 @@ export default function CallStackArena() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col items-center justify-center px-4 py-8 text-white relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col items-center justify-start px-4 py-8 text-white relative overflow-y-auto">
+
+
             <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
             <motion.h1
                 className="relative md:text-2xl text-lg text-center font-extrabold uppercase tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-white to-red-500 mb-6 p-4"
