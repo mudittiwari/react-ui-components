@@ -58,52 +58,55 @@ export default function CallStackDemoTwo() {
     const [currentBlockedFunction, setCurrentBlockedFunction] = useState<string | null>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [nextFunction, setNextFunction] = useState<{ name: string; color: string; emoji: string; type: string; code: string } | null>(null);
+    const [simulationStarted, setSimulationStarted] = useState(false);
 
     const sequence = ["main()", "fetchUserData()", "processUserData()", "saveToDatabase()", "renderUI()", "cleanup()"];
 
     useEffect(() => {
-        if (currentIndex >= sequence.length) return;
-        if (isBlocked) return;
+        if (simulationStarted) {
+            if (currentIndex >= sequence.length) return;
+            if (isBlocked) return;
 
-        const fnName = sequence[currentIndex];
-        const f = functions.find((f) => f.name === fnName);
-        if (!f) return;
+            const fnName = sequence[currentIndex];
+            const f = functions.find((f) => f.name === fnName);
+            if (!f) return;
 
-        setStack((prev) => [...prev, { ...f, id: Date.now() }]);
-        setCurrentAction(`${fnName} entered the stack.`);
+            setStack((prev) => [...prev, { ...f, id: Date.now() }]);
+            setCurrentAction(`${fnName} entered the stack.`);
 
 
-        if (f.type === "blocking") {
+            if (f.type === "blocking") {
 
-            const fnNameNext = sequence[currentIndex + 1];
-            const fNext = functions.find((f) => f.name === fnNameNext);
+                const fnNameNext = sequence[currentIndex + 1];
+                const fNext = functions.find((f) => f.name === fnNameNext);
+                setTimeout(() => {
+                    setIsBlocked(true);
+                    setCurrentBlockedFunction(fnName);
+                    setCurrentAction(`${fnName} is blocking... Click resume.`);
+                    setNextFunction(fNext ?? null);
+                    fail(f.name);
+                }, 2000);
+                return;
+            }
             setTimeout(() => {
-                setIsBlocked(true);
-                setCurrentBlockedFunction(fnName);
-                setCurrentAction(`${fnName} is blocking... Click resume.`);
-                setNextFunction(fNext ?? null);
-                fail(f.name);
-            }, 2000);
-            return;
+                highlight(f.name);
+            }, 1000);
+
+
+            const timer = setTimeout(() => {
+                pop(fnName);
+                setTimeout(() => {
+                    setCurrentIndex((prev) => prev + 1);
+                    if (currentIndex == sequence.length - 1)
+                        setShowTagline(true);
+                }, 2000);
+            }, 3500);
+
+
+
+            return () => clearTimeout(timer);
         }
-        setTimeout(() => {
-            highlight(f.name);
-        }, 1000);
-
-
-        const timer = setTimeout(() => {
-            pop(fnName);
-            setTimeout(() => {
-                setCurrentIndex((prev) => prev + 1);
-                if (currentIndex == sequence.length - 1)
-                    setShowTagline(true);
-            }, 2000);
-        }, 3500);
-
-
-
-        return () => clearTimeout(timer);
-    }, [currentIndex, isBlocked]);
+    }, [currentIndex, isBlocked, simulationStarted]);
 
     const pop = (name: string) => {
         setStack((prev) => prev.filter((f) => f.name !== name));
@@ -334,6 +337,16 @@ export default function CallStackDemoTwo() {
                     className="mt-4 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-400 text-black font-bold rounded-lg shadow-md animate-pulse"
                 >
                     Resume Execution
+                </button>
+            )}
+            {!simulationStarted && (
+                <button
+                    onClick={()=>{
+                        setSimulationStarted(true);
+                    }}
+                    className="mt-4 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-400 text-black font-bold rounded-lg shadow-md animate-pulse"
+                >
+                    Start
                 </button>
             )}
             {showTagline && (

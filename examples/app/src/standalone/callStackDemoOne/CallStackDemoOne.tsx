@@ -23,14 +23,15 @@ export default function CallStackDemoOne() {
     const [currentAction, setCurrentAction] = useState<string | null>(null);
     const [showTagline, setShowTagline] = useState(false);
     const [nextFunction, setNextFunction] = useState<{ name: string; color: string; emoji: string; type: string; code: string } | null>(null);
-
+    const [simulationStarted, setSimulationStarted] = useState(false);
     const [isBlocked, setIsBlocked] = useState(false);
     const [currentBlocked, setCurrentBlocked] = useState<string | null>(null);
     const activeRef = useRef<Record<string, boolean>>({});
 
     useEffect(() => {
-        pushFunction("main()");
-    }, []);
+        if(simulationStarted)
+            pushFunction("main()");
+    }, [simulationStarted]);
 
     const pushFunction = (name: string, parent?: string) => {
         const fn = functions.find(f => f.name === name);
@@ -79,21 +80,21 @@ export default function CallStackDemoOne() {
 
     const pop = (name: string) => {
         setTimeout(() => {
-          setStack(prev => {
-            const updated = prev.filter(f => f.name !== name);
-            if (updated.length > 0) {
-              const top = updated[updated.length - 1].name;
-              setCurrentAction(`${top} is executing...`);
-              highlight(top);
-            } else {
-              setCurrentAction(`All functions have completed.`);
-              setShowTagline(true);
-            }
-            return updated;
-          });
-          delete activeRef.current[name];
+            setStack(prev => {
+                const updated = prev.filter(f => f.name !== name);
+                if (updated.length > 0) {
+                    const top = updated[updated.length - 1].name;
+                    setCurrentAction(`${top} is executing...`);
+                    highlight(top);
+                } else {
+                    setCurrentAction(`All functions have completed.`);
+                    setShowTagline(true);
+                }
+                return updated;
+            });
+            delete activeRef.current[name];
         }, 1000);
-      };
+    };
 
     const resume = () => {
         if (!currentBlocked) return;
@@ -314,6 +315,16 @@ export default function CallStackDemoOne() {
                     className="mt-4 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-400 text-black font-bold rounded-lg shadow-md animate-pulse"
                 >
                     Resume Execution
+                </button>
+            )}
+            {!simulationStarted && (
+                <button
+                    onClick={() => {
+                        setSimulationStarted(true);
+                    }}
+                    className="mt-4 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-400 text-black font-bold rounded-lg shadow-md animate-pulse"
+                >
+                    Start
                 </button>
             )}
             {showTagline && (
