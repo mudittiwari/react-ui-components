@@ -1,6 +1,6 @@
-export const AccordionCodeSnippets: Record<"Accordion1" | "Accordion2" | "Accordion3" | "Accordion4" | "Accordion5" | "Accordion6" | "Accordion7" | "Accordion8" , { component: string; css: string; usage: string }> = {
-    Accordion1: {
-        component: `import React, { useState } from "react";
+export const AccordionCodeSnippets: Record<"Accordion1" | "Accordion2" | "Accordion3" | "Accordion4" | "Accordion5" | "Accordion6" | "Accordion7" | "Accordion8", { component: string; css: string; usage: string }> = {
+  Accordion1: {
+    component: `import React, { useState } from "react";
     
     interface AccordionItem {
       title: string;
@@ -76,8 +76,8 @@ export const AccordionCodeSnippets: Record<"Accordion1" | "Accordion2" | "Accord
     
     export default Accordion1;
     `,
-        css: ``,
-        usage: `{/* <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-10">
+    css: ``,
+    usage: `{/* <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-10">
           <Accordion1 
         items={accordionData}
         multipleOpen={true} 
@@ -89,10 +89,10 @@ export const AccordionCodeSnippets: Record<"Accordion1" | "Accordion2" | "Accord
         icon="✨"
       />
         </div> */}`,
-    },
+  },
 
-    Accordion2: {
-        component: `import React, { useState, useEffect, useRef } from "react";
+  Accordion2: {
+    component: `import React, { useState, useEffect, useRef } from "react";
 
 interface AccordionItem {
   title: string;
@@ -231,8 +231,8 @@ const Accordion2: React.FC<StackAccordionProps> = ({
 
 export default Accordion2;
 `,
-        css: `/* No css for this component */`,
-        usage: `<div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+    css: `/* No css for this component */`,
+    usage: `<div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
           <Accordion2
             items={accordionData}
             bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
@@ -247,10 +247,10 @@ export default Accordion2;
             height="h-72"
           />
         </div>`,
-    },
+  },
 
-    Accordion3: {
-        component: `import React, { useState } from "react";
+  Accordion3: {
+    component: `import React, { useState } from "react";
 import "./style.css";
 
 interface AccordionItem {
@@ -355,7 +355,7 @@ const Accordion3: React.FC<StackAccordionProps> = ({
 
 export default Accordion3;
 `,
-        css: `/* Accordion3 Styles */
+    css: `/* Accordion3 Styles */
   .image-container {
     width: 350px;
     height: 350px;
@@ -412,7 +412,7 @@ export default Accordion3;
     transform: rotateY(var(--rotation-angle));
   }
   `,
-        usage: `<div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+    usage: `<div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
           <Accordion3
             items={accordionData}
             bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
@@ -427,10 +427,10 @@ export default Accordion3;
             height="h-[500px]"
           />
         </div>`,
-    },
+  },
 
-    Accordion4: {
-        component: `import React, { useState } from "react";
+  Accordion4: {
+    component: `import React, { useState } from "react";
 import "./style.css";
 
 interface AccordionItem {
@@ -531,7 +531,7 @@ const Accordion4: React.FC<StackAccordionProps> = ({
 
 export default Accordion4;
 `,
-        css: `.image-container {
+    css: `.image-container {
     width: 350px;
     height: 350px;
     position: relative;
@@ -588,7 +588,7 @@ export default Accordion4;
     transform: rotateX(var(--rotation-angle));
 }
 `,
-        usage: `<div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
+    usage: `<div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 p-10">
           <Accordion4
             items={accordionData}
             bgColor="linear-gradient(135deg, #1E3A8A, #3B82F6)"
@@ -603,10 +603,10 @@ export default Accordion4;
             height="h-[500px]"
           />
         </div>`,
-    },
+  },
 
-    Accordion5: {
-      component: `import React, { useState } from "react";
+  Accordion5: {
+    component: `import React, { useState } from "react";
     
     interface AccordionItem {
       title: string;
@@ -735,8 +735,8 @@ export default Accordion4;
     
     export default Accordion5;
     `,
-      css: `/* No external CSS needed – fully Tailwind utility-based */`,
-      usage: `<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] px-4">
+    css: `/* No external CSS needed – fully Tailwind utility-based */`,
+    usage: `<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] px-4">
       <Accordion5
         items={accordionData}
         bgColor="rgba(255,255,255,0.02)"
@@ -761,10 +761,10 @@ export default Accordion4;
         spacing="mb-5"
       />
     </div>`
-    },
+  },
 
-    Accordion6: {
-      component: `import React, { useState } from "react";
+  Accordion6: {
+    component: `import React, { useState } from "react";
     
     interface Accordion6Item {
       title: string;
@@ -890,8 +890,8 @@ export default Accordion4;
     
     export default Accordion6;
     `,
-      css: `/* Fully styled with Tailwind. No external CSS needed */`,
-      usage: `<div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black px-4">
+    css: `/* Fully styled with Tailwind. No external CSS needed */`,
+    usage: `<div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-black px-4">
       <div className="absolute inset-0 z-0">
         <div className="w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#00ffe1_10%,_transparent_70%)] opacity-20 animate-pulse absolute" />
         <div className="w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_#1e90ff_10%,_transparent_70%)] opacity-20 animate-pulse delay-1000 absolute" />
@@ -918,10 +918,10 @@ export default Accordion4;
         />
       </div>
     </div>`
-    },
+  },
 
-    Accordion7: {
-      component: `import React, { useState } from "react";
+  Accordion7: {
+    component: `import React, { useState } from "react";
     
     interface Accordion7Item {
       title: string;
@@ -1068,8 +1068,8 @@ export default Accordion4;
     
     export default Accordion7;
     `,
-      css: `/* Fully styled using Tailwind. No external CSS required */`,
-      usage: `<div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0a0020] via-[#14002e] to-[#050011] px-4 py-20 overflow-hidden">
+    css: `/* Fully styled using Tailwind. No external CSS required */`,
+    usage: `<div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0a0020] via-[#14002e] to-[#050011] px-4 py-20 overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,_#ff00d4_0%,_transparent_70%)] top-[-150px] left-[-180px] opacity-30 blur-3xl animate-pulse" />
         <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,_#8a2be2_0%,_transparent_70%)] bottom-[-150px] right-[-160px] opacity-25 blur-2xl animate-pulse delay-1000" />
@@ -1099,10 +1099,10 @@ export default Accordion4;
         />
       </div>
     </div>`
-    },
+  },
 
-    Accordion8: {
-      component: `import React, { useState } from "react";
+  Accordion8: {
+    component: `import React, { useState } from "react";
     
     interface AccordionItem {
       title: string;
@@ -1142,12 +1142,10 @@ export default Accordion4;
       titleFontSize = "text-xl sm:text-2xl md:text-3xl",
       contentFontSize = "text-sm sm:text-base",
       contentPadding = "p-5 sm:p-8",
-      imageHeight = "h-48 sm:h-auto",
       blurAmount = 14,
       titleGradient = true,
     }) => {
       const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    
       return (
         <div className="w-full max-w-6xl mx-auto space-y-6 px-4">
           <style>{\`
@@ -1173,12 +1171,11 @@ export default Accordion4;
     
           {items.map((item, index) => {
             const isActive = index === activeIndex;
-    
             return (
               <div
                 key={index}
                 onClick={() => setActiveIndex(isActive ? null : index)}
-                className={\`relative group flex flex-col sm:flex-row transition-all transform-gpu border \${rounded} overflow-hidden hover:scale-[1.01]\`}
+                className={\`relative flex flex-col sm:flex-row items-stretch transition-all transform-gpu border \${rounded} overflow-hidden cursor-pointer\`}
                 style={{
                   background: backgroundColor,
                   borderColor,
@@ -1188,45 +1185,59 @@ export default Accordion4;
                     ? \`0 0 40px \${glowColor}, inset 0 0 12px \${glowColor}55\`
                     : "0 6px 20px rgba(0,0,0,0.3)",
                   transition: \`all \${transitionDuration}ms cubic-bezier(0.4, 0, 0.2, 1)\`,
+                  minHeight: "150px",
                 }}
               >
-                <div className={\`relative w-full sm:w-48 \${imageHeight} shrink-0\`}>
+                <div
+                  className={\`relative w-full sm:w-48 shrink-0 transition-all duration-\${transitionDuration}\`}
+                  style={{
+                    maxHeight: isActive ? "600px" : "192px",
+                  }}
+                >
                   <img
                     src={item.image}
                     alt={item.title}
                     className={\`w-full h-full object-cover transition-all duration-700 \${isActive ? "brightness-110 scale-105" : "brightness-[.6] blur-[1px]"}\`}
                   />
-                  <div className="absolute inset-0" style={{ background: overlayColor }} />
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: overlayColor }}
+                  />
                 </div>
                 <div
-                  className={\`flex-1 flex flex-col \${isActive ? "justify-start" : "justify-center"} transition-all duration-500 \${contentPadding}\`}
+                  className={\`flex-1 transition-all duration-500 flex flex-col justify-center \${contentPadding}\`}
+                  style={{
+                    color: isActive ? activeTextColor : textColor,
+                  }}
                 >
                   <div
                     className={\`font-bold tracking-normal flex items-center gap-2 \${titleFontSize} \${titleGradient && isActive ? "text-gradient" : ""}\`}
-                    style={{
-                      color: isActive ? activeTextColor : textColor,
-                      lineHeight: "1.2",
-                      wordBreak: "break-word",
-                    }}
+                    style={{ wordBreak: "break-word", lineHeight: 1.2 }}
                   >
                     {item.icon && <span className="text-xl animate-pulse">{item.icon}</span>}
                     {item.title}
                   </div>
+    
                   <div
-                    className={\`h-[2px] w-20 rounded-full my-3 transition-all \${isActive ? "bg-gradient-to-r from-pink-500 to-purple-400 scale-x-100" : "bg-white/10 scale-x-0"} origin-left duration-500\`}
+                    className={\`h-[2px] w-20 rounded-full my-3 transition-all \${isActive
+                      ? "bg-gradient-to-r from-pink-500 to-purple-400 scale-x-100"
+                      : "bg-white/10 scale-x-0"} origin-left duration-500\`}
                   />
+    
                   <div
-                    className={\`transition-all ease-in-out overflow-hidden \${isActive ? "opacity-100 max-h-[1000px]" : "opacity-0 max-h-0"}\`}
+                    className={\`transition-all ease-in-out overflow-hidden \${isActive ? "opacity-100 max-h-[1000px] mt-2" : "opacity-0 max-h-0"}\`}
                     style={{
                       transform: isActive ? "translateY(0)" : "translateY(-10px)",
                     }}
                   >
-                    <div className="fade-slide-up bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-inner text-white/90 space-y-4 p-4 sm:p-6 mt-2">
-                      <h3 className="text-lg font-semibold text-gradient">Key Features</h3>
-                      <ul className={\`space-y-2 \${contentFontSize} leading-relaxed\`}>
-                        {item.content.split("\\n").map((line, idx) => {
-                          if (line.trim().startsWith("- ")) {
-                            return (
+                    {isActive && (
+                      <div className="fade-slide-up bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-inner text-white/90 space-y-4 p-4 sm:p-6">
+                        <h3 className="text-lg font-semibold text-gradient">
+                          Key Features
+                        </h3>
+                        <ul className={\`space-y-2 \${contentFontSize} leading-relaxed\`}>
+                          {item.content.split("\\n").map((line, idx) =>
+                            line.trim().startsWith("- ") ? (
                               <li
                                 key={idx}
                                 className="flex items-start gap-3 fade-slide-up"
@@ -1235,19 +1246,18 @@ export default Accordion4;
                                 <span className="mt-1 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 shadow-sm" />
                                 <span>{line.replace("- ", "")}</span>
                               </li>
-                            );
-                          }
-                          return (
-                            <p key={idx} className="text-white/80 fade-slide-up">
-                              {line}
-                            </p>
-                          );
-                        })}
-                      </ul>
-                      <p className="text-sm sm:text-base text-white/60 italic fade-slide-up">
-                        Designed for intelligent systems and high-speed clinical workflows.
-                      </p>
-                    </div>
+                            ) : (
+                              <p key={idx} className="text-white/80 fade-slide-up">
+                                {line}
+                              </p>
+                            )
+                          )}
+                        </ul>
+                        <p className="text-sm sm:text-base text-white/60 italic fade-slide-up">
+                          Designed for intelligent systems and high-speed clinical workflows.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -1259,8 +1269,8 @@ export default Accordion4;
     
     export default Accordion8;
     `,
-      css: `/* Fully styled using Tailwind. No external CSS needed */`,
-      usage: `<div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0a0015] via-[#120021] to-[#050011] px-4 py-20 overflow-hidden">
+    css: `/* Fully styled with Tailwind. No external CSS required */`,
+    usage: `<div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0a0015] via-[#120021] to-[#050011] px-4 py-20 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute w-[600px] h-[600px] bg-[radial-gradient(circle,_#ff00d466_0%,_transparent_70%)] top-[-180px] left-[-200px] opacity-30 blur-3xl animate-pulse" />
         <div className="absolute w-[500px] h-[500px] bg-[radial-gradient(circle,_#8a2be2_0%,_transparent_70%)] bottom-[-140px] right-[-160px] opacity-25 blur-2xl animate-pulse delay-1000" />
@@ -1292,10 +1302,11 @@ export default Accordion4;
         />
       </div>
     </div>`
-    }
-    
-    
+  }
 
-    
-    
+
+
+
+
+
 };

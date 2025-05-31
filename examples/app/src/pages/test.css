@@ -1,0 +1,36 @@
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+  50% {
+    border-color: rgba(255, 0, 255, 0.8);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+@keyframes grid-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
+}
+
+.animate-grid-shift {
+  animation: grid-shift 10s linear infinite;
+}
+.code-snippet {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #f8fafc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  white-space: pre-wrap;
+  backdrop-filter: blur(4px);
+  max-width: 240px;
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.2);
+}
