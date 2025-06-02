@@ -124,7 +124,7 @@ const taskDefinitions: { [K in TaskType]: { label: string; queue: QueueType } } 
     animationFrame: { label: 'Animation Frame', queue: 'macrotask' },
     idleCallback: { label: 'requestIdleCallback()', queue: 'macrotask' },
 };
-const EventLoopSimulator: React.FC = () => {
+const EventLoopOne: React.FC = () => {
     const [renderCounter, setRenderCounter] = useState(0);
     const callStackRef = useRef<Task[]>([]);
     const microtasksRef = useRef<Task[]>([]);
@@ -323,4 +323,4 @@ const EventLoopSimulator: React.FC = () => {
     );
 };
 
-export default EventLoopSimulator;
+export default EventLoopOne;

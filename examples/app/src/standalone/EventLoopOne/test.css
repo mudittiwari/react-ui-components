@@ -1,0 +1,88 @@
+html, body, #root {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  
+  .bg-grid-pattern {
+    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  @keyframes blobDrift1 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(80px, -50px) scale(1.15); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  
+  @keyframes blobDrift2 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-80px, 50px) scale(1.15); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  
+  @keyframes gridDrift {
+    0% { background-position: 0 0; }
+    100% { background-position: 400px 400px; }
+  }
+  
+  @keyframes particles {
+    0% { background-position: 0 0; }
+    100% { background-position: -200px 200px; }
+  }
+  .animate-particles {
+    animation: particles 60s linear infinite;
+  }
+  
+  @keyframes rotate-very-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .animate-rotate-very-slow {
+    animation: rotate-very-slow 180s linear infinite;
+  }
+  
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 1; }
+  }
+  
+  .animate-blob-drift-1 { animation: blobDrift1 60s ease-in-out infinite; }
+  .animate-blob-drift-2 { animation: blobDrift2 60s ease-in-out infinite; }
+  .animate-grid-drift { animation: gridDrift 40s linear infinite; }
+  .animate-particles { animation: particles 60s linear infinite; }
+  .animate-rotate-slow { animation: rotateSlow 100s linear infinite; }
+  .animate-rotate-very-slow { animation: rotateSlow 200s linear infinite; }
+  .animate-pulse-slow { animation: pulseSlow 6s ease-in-out infinite; }
+  
+  
+  @keyframes gradient-x {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  
+  .pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 5s linear infinite;
+  }

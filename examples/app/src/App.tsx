@@ -43,7 +43,7 @@ import ThemeChangeIcon from "./standalone/themeChangeIcon/ThemeChangeIcon";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isStandalone = location.pathname.startsWith("/standalone");
+  const isStandalone = location.pathname.startsWith("/test");
 
   return (
     <div className="flex">

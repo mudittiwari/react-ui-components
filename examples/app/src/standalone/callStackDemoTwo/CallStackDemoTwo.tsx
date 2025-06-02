@@ -156,6 +156,14 @@ export default function CallStackDemoTwo() {
                 />
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-white/10 via-white/20 to-white/10 blur-md opacity-30"></div>
             </motion.h1>
+            <motion.p
+                className="mt-8 text-sm text-emerald-300 font-bold uppercase text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+            >
+                Sequential execution in a single-threaded environment
+            </motion.p>
             <div className="relative w-full h-12 flex items-center justify-center mt-5 md:mt-10">
                 <AnimatePresence>
                     {currentAction && (
@@ -341,7 +349,7 @@ export default function CallStackDemoTwo() {
             )}
             {!simulationStarted && (
                 <button
-                    onClick={()=>{
+                    onClick={() => {
                         setSimulationStarted(true);
                     }}
                     className="mt-4 px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-400 text-black font-bold rounded-lg shadow-md animate-pulse"

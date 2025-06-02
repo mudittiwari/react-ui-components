@@ -29,7 +29,7 @@ export default function CallStackDemoOne() {
     const activeRef = useRef<Record<string, boolean>>({});
 
     useEffect(() => {
-        if(simulationStarted)
+        if (simulationStarted)
             pushFunction("main()");
     }, [simulationStarted]);
 
@@ -127,6 +127,7 @@ export default function CallStackDemoOne() {
                 <span className="relative z-10 text-transparent text-white bg-clip-text">
                     The Journey of JavaScript Execution
                 </span>
+
                 <motion.div
                     className="absolute inset-0 rounded-xl pointer-events-none"
                     style={{
@@ -137,6 +138,14 @@ export default function CallStackDemoOne() {
                 />
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-white/10 via-white/20 to-white/10 blur-md opacity-30"></div>
             </motion.h1>
+            <motion.p
+                className="mt-8 text-sm text-emerald-300 font-bold uppercase text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+            >
+                Nested Function calls, blocking operations, and the call stack in action.
+            </motion.p>
             <div className="relative w-full h-12 flex items-center justify-center mt-5 md:mt-10">
                 <AnimatePresence>
                     {currentAction && (
