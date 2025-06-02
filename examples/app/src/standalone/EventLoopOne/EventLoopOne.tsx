@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import "./test.css";
-
+import { FaInfo } from 'react-icons/fa';
 type TaskType =
     | 'promise'
     | 'mutation'
@@ -27,6 +27,39 @@ type Task = {
     label: string;
 };
 
+const InfoButton: React.FC<{ section: string }> = ({ section }) => {
+    const [showInfo, setShowInfo] = useState(false);
+
+    const infoText: Record<string, string> = {
+        'Call Stack': 'The Call Stack keeps track of function calls in JavaScript. It follows LIFO: Last In, First Out.',
+        'Microtasks': 'Microtasks are higher-priority tasks like Promises, MutationObservers, and queueMicrotask(). They execute after the current JavaScript stack is cleared.',
+        'Macrotasks': 'Macrotasks include setTimeout, setInterval, I/O events, and other scheduled tasks. They run after microtasks are processed.'
+    };
+
+    return (
+        <div className="relative">
+            <button
+                onClick={() => setShowInfo(!showInfo)}
+                className="flex items-center justify-center w-6 h-6 text-xs text-white/80 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md hover:scale-110 transition transform duration-300 ease-out shadow-md hover:shadow-pink-400/30 animate-pulse-slow"
+            >
+                <FaInfo size={14} className="text-white/80" />
+            </button>
+
+            {showInfo && (
+                <div
+                    className="absolute z-50 top-8 left-1/2 -translate-x-1/2 transition-all max-w-[80vw] sm:max-w-64 p-3 rounded-xl text-sm text-white 
+    bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-white/10 shadow-xl backdrop-blur-lg 
+    animate-fadeIn"
+                    style={{ wordWrap: 'break-word' }}
+                >
+                    {infoText[section] || 'No information available.'}
+                </div>
+            )}
+        </div>
+    );
+};
+
+
 const TaskCard: React.FC<{ task: Task, floatingTask: string }> = ({ task, floatingTask }) => {
     const baseGradient =
         task.queue === 'microtask'
@@ -45,15 +78,11 @@ const TaskCard: React.FC<{ task: Task, floatingTask: string }> = ({ task, floati
             task.queue === 'macrotask' ? '#06b6d4' :
                 '#8b5cf6';
 
-    const sizeClasses =
-        task.queue === 'microtask' || task.queue === 'macrotask'
-            ? 'w-48 h-12'
-            : 'w-72 h-20';
 
     return (
         <motion.div
             data-task-id={task.id}
-            className={`relative ${sizeClasses} p-3 w-28 md:w-48 md:h-10 h-max text-center rounded-xl text-sm font-semibold text-white 
+            className={`relative p-3 w-28 md:w-48 truncate md:h-10 h-max text-center rounded-xl text-sm font-semibold text-white 
           bg-gradient-to-br ${baseGradient} border ${borderColor} 
           shadow-[inset_0_0_15px_#ffffff22,_0_0_30px_5px] backdrop-blur-xl
           hover:scale-105 transition-transform duration-500 ease-out ${task.id === floatingTask ? 'opacity-0' : ''}`}
@@ -82,11 +111,6 @@ const FloatingTask: React.FC<{ task: { id: string; label: string; from: DOMRect;
     const screenWidth = window.innerWidth;
     let deltaX = (to.left + to.width / 2) - (from.left + from.width / 2) - 60;
     let deltaY = to.bottom - from.bottom;
-
-    // if (screenWidth < 768) {
-    //     deltaX = (to.left - from.left) * -1.1;
-    //     deltaY = (to.bottom - from.bottom);
-    // }
 
 
     return (
@@ -246,10 +270,11 @@ const EventLoopOne: React.FC = () => {
                 <span className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 blur-2xl opacity-20 animate-shimmer pointer-events-none"></span>
             </h1>
             <div className="flex items-start flex-col md:flex-row justify-center gap-12 w-full max-w-7xl z-10">
-                <div id='callstack-container' className="w-full flex mx-auto md:mx-0 mt-5 md:mt-0 flex-col items-center space-y-6 order-2 md:order-1">
-                    <h2 className="text-xl font-bold tracking-widest uppercase text-violet-300 drop-shadow-lg">
-                        Call Stack
-                    </h2>
+                <div id='callstack-container' className="w-full flex mx-auto md:mx-0 mt-2 md:mt-0 flex-col items-center space-y-6 order-2 md:order-1">
+                    <div className="flex items-center gap-2">
+                        <h2 className="text-xl font-bold tracking-widest uppercase text-violet-300 drop-shadow-lg">Call Stack</h2>
+                        <InfoButton section="Call Stack" />
+                    </div>
 
                     <div
                         className="relative w-4/5 md:w-80 md:h-[500px] h-[250px] flex flex-col p-5 rounded-3xl items-center justify-end gap-4
@@ -284,9 +309,10 @@ const EventLoopOne: React.FC = () => {
 
                 <div className="w-full flex flex-col items-center justify-start gap-6 order-1 md:order-2">
                     {['Microtasks', 'Macrotasks'].map((section, index) => (
-                        <><h2 className="text-xl font-bold tracking-widest uppercase text-violet-300 drop-shadow-lg">
-                            {section}
-                        </h2>
+                        <><div className="flex items-center gap-2">
+                            <h2 className="text-xl font-bold tracking-widest uppercase text-violet-300 drop-shadow-lg">{section}</h2>
+                            <InfoButton section={section} />
+                        </div>
                             <div
                                 className={`relative w-4/5 md:w-[700px] h-32 md:h-52 flex flex-row p-5 rounded-3xl items-start justify-start gap-4 flex-wrap
     ${section === 'Microtasks'

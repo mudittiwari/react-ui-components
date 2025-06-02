@@ -44,7 +44,7 @@ import EventLoopOne from "./standalone/EventLoopOne/EventLoopOne";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isStandalone = location.pathname.startsWith("/test");
+  const isStandalone = location.pathname.startsWith("/standalone");
 
   return (
     <div className="flex">
