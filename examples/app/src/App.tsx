@@ -33,6 +33,7 @@ import CallStackDemoTwo from "./standalone/callStackDemoTwo/CallStackDemoTwo";
 import RevealCenter from "./standalone/revelCenter/RevealCenter";
 import RevealContentOnScroll from "./standalone/revelContentOnScroll/RevealContentOnScroll";
 import ThemeChangeIcon from "./standalone/themeChangeIcon/ThemeChangeIcon";
+import EventLoopOne from "./standalone/EventLoopOne/EventLoopOne";
 // import Accordion3 from "./components/Accordions/Accordion3/Accordion3";
 // import Accordion4 from "./components/Accordions/Accordion4/Accordion4";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
@@ -74,6 +75,7 @@ function App() {
             <Route path="/standalone/revealCenter" element={<RevealCenter />} />
             <Route path="/standalone/revealContentOnScroll" element={<RevealContentOnScroll />} />
             <Route path="/standalone/themeChangeIcon" element={<ThemeChangeIcon />} />
+            <Route path="/standalone/eventLoopOne" element={<EventLoopOne />} />
             <Route path="/accordions" element={<AccordionsPage />} />
             <Route path="/buttons" element={<ButtonsPage />} />
             <Route path="/cards" element={<CardsPage />} />
