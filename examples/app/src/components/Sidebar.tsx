@@ -19,6 +19,7 @@ const Sidebar: React.FC = () => {
     { to: "/standalone/revealContentOnScroll", label: "Reveal on Scroll" },
     { to: "/standalone/themeChangeIcon", label: "Theme Change" },
     { to: "/standalone/eventLoopOne", label: "Event Loop Demo" },
+    { to: "/standalone/elevator", label: "Elevator LLD" },
   ];
 
   return (

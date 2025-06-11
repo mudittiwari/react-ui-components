@@ -57,6 +57,39 @@ module.exports = {
           '100%': { backgroundPosition: '100% 50%' },
         },
       },
+      animation: {
+        shimmer: 'shimmer 2.5s linear infinite',
+        panelFloat: 'floatPanel 5s ease-in-out infinite',
+        buttonPulse: 'pulseGlow 3s ease-in-out infinite',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        floatPanel: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-2px)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 8px rgba(255, 221, 0, 0.2)' },
+          '50%': { boxShadow: '0 0 14px rgba(255, 221, 0, 0.4)' },
+        },
+      },
+      animation: {
+        'glow-sweep': 'glowSweep 1.5s linear infinite',
+        'fade-in': 'fadeIn 0.5s ease-out',
+      },
+      keyframes: {
+        glowSweep: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+        fadeIn: {
+          '0%': { opacity: 0, transform: 'scale(0.95)' },
+          '100%': { opacity: 1, transform: 'scale(1)' },
+        },
+      },
     },
   },
   plugins: [],

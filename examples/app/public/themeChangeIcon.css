@@ -1,0 +1,177 @@
+
+/* .emoji-theme-container {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(to right, #facc15, #f97316);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  animation: gradientShift 15s ease infinite alternate;
+}
+
+.themed-header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.themed-header p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+.themed-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.15);
+  cursor: pointer;
+}
+
+.card button {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.emoji-theme-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.card {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; } */
+
+.emoji-theme-container{
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(to right, #facc15, #f97316);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    animation: gradientShift 15s ease infinite alternate;
+  }
+  .themed-header h1{
+    font-size: 3rem;
+    font-weight: 900;
+  }
+  .themed-header p{
+    font-weight: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+  @keyframes gradientShift {
+    0%{
+      background-position: 0% 50%;
+    }
+    100%{
+      background-position: 100% 50%;
+    }
+  }
+  .themed-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+  .card{
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: left;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover{
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+  }
+  .card button{
+    padding: 0.7rem 1.4rem;
+    border:none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card button:hover{
+    transform: scale(1.07);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .emoji-theme-container::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes fadeInUp{
+    0%{
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .card{
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+  }
+  
+  .card:nth-child(2){animation-delay: 0.2s;}
+  .card:nth-child(3){animation-delay: 0.4s;}

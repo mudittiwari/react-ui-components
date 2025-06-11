@@ -4,6 +4,8 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^9.83.6",
+    "@react-three/fiber": "^8.15.13",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,6 +13,7 @@
     "@types/node": "^16.18.121",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.15.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -18,6 +21,7 @@
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
     "react-ui-components-mudittiwari13": "^1.1.4",
+    "three": "^0.177.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

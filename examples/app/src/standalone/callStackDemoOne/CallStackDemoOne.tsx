@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import "./index.css";
+// import "./index.css";
 
 
 
@@ -27,6 +27,25 @@ export default function CallStackDemoOne() {
     const [isBlocked, setIsBlocked] = useState(false);
     const [currentBlocked, setCurrentBlocked] = useState<string | null>(null);
     const activeRef = useRef<Record<string, boolean>>({});
+
+
+    useEffect(() => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './test.css';
+        link.id = 'css';
+      
+        // Prevent duplicate load
+        if (!document.getElementById('test-css')) {
+          document.head.appendChild(link);
+        }
+      
+        return () => {
+          // Optional cleanup on unmount
+          const existing = document.getElementById('test-css');
+          if (existing) existing.remove();
+        };
+      }, []);
 
     useEffect(() => {
         if (simulationStarted)

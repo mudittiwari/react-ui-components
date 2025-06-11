@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import "./index.css";
+// import "./index.css";
 const functions = [
     {
         name: "main()",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import "./test.css";
+// import "./test.css";
 import { FaInfo } from 'react-icons/fa';
 type TaskType =
     | 'promise'
@@ -208,7 +208,7 @@ const EventLoopOne: React.FC = () => {
     };
 
     const scheduleRandomTasks = () => {
-        const tasksToPush = Math.floor(Math.random() * 3) + 5;
+        const tasksToPush = Math.floor(Math.random() * 3) + 1;
         for (let i = 0; i < tasksToPush; i++) {
             const task = randomTask();
             const delay = i * 2000;

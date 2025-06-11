@@ -1,326 +1,405 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import "./test.css";
+import { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
+import { motion } from 'framer-motion';
+// import './test.css';
+import exp from 'constants';
+import { Html } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 
-type TaskType =
-    | 'promise'
-    | 'mutation'
-    | 'queueMicrotask'
-    | 'microtaskCustom'
-    | 'setTimeout'
-    | 'setInterval'
-    | 'setImmediate'
-    | 'io'
-    | 'raf'
-    | 'fetch'
-    | 'websocket'
-    | 'domEvent'
-    | 'clickHandler'
-    | 'animationFrame'
-    | 'idleCallback';
-type QueueType = 'microtask' | 'macrotask' | 'callStack';
+type ButtonState = 'PRESSED' | 'NOT_PRESSED';
 
-type Task = {
-    id: string;
-    type: TaskType;
-    queue: QueueType;
-    label: string;
+interface ExternalButton {
+  getState: () => ButtonState;
+}
+
+interface Floor {
+  getButtonExternalList: () => ExternalButton[];
+}
+
+interface InternalButton {
+  getState: () => ButtonState;
+}
+interface LiftDisplayProps {
+  floor: number;
+  direction: 'UPWARDS' | 'DOWNWARDS' | 'NEUTRAL';
+}
+
+function LiftDisplay({ floor, direction }: LiftDisplayProps) {
+  return (
+    <div className="w-36 h-36 mx-auto mt-6 relative rounded-2xl bg-gradient-to-br from-yellow-50 to-white shadow-[0_0_25px_rgba(255,230,150,0.4)] border border-yellow-200 ring-1 ring-inset ring-yellow-100 overflow-hidden backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,221,0,0.5)] hover:scale-[1.01] flex flex-col items-center justify-center text-center animate-fade-in">
+      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-200/40 to-transparent blur-md opacity-50 group-hover:opacity-100 animate-glow-sweep pointer-events-none" />
+      {direction === 'UPWARDS' && (
+        <div className="text-4xl font-bold text-yellow-500 animate-bounce drop-shadow-sm z-10">▲</div>
+      )}
+      {direction === 'DOWNWARDS' && (
+        <div className="text-4xl font-bold text-yellow-500 animate-bounce drop-shadow-sm z-10">▼</div>
+      )}
+      <div className="text-5xl font-extrabold tracking-widest text-gray-900 font-[Orbitron] mt-1 z-10">
+        {floor}
+      </div>
+      <div className="text-sm uppercase text-yellow-700 tracking-widest mt-1 z-10 font-semibold">
+        {direction === 'NEUTRAL' ? 'IDLE' : direction.toLowerCase()}
+      </div>
+    </div>
+  );
+}
+function FloorSelector({ onSubmit }: { onSubmit: (floors: number) => void }) {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const num = parseInt(value);
+    if (!isNaN(num) && num > 0) {
+      onSubmit(num);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-end gap-4 p-6 rounded-xl bg-white/60 border border-yellow-200 backdrop-blur-md shadow-lg w-max mx-auto mt-10 transform transition-all duration-500 hover:scale-[1.01]"
+    >
+      <div className="flex flex-row gap-3 items-center">
+        <label className="text-sm text-gray-700 font-semibold tracking-wide">Number of floors</label>
+        <input
+          type="number"
+          min="2"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="e.g. 8"
+          className="w-28 px-4 py-2 text-center text-gray-800 font-medium rounded-md border border-gray-300 bg-white shadow-inner focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-300"
+        />
+      </div>
+      <button
+        type="submit"
+        className="px-5 py-2 bg-gradient-to-br from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold rounded-md shadow-md transition-all duration-300 transform hover:scale-105 focus:ring-2 focus:ring-yellow-300"
+      >
+        Set
+      </button>
+    </form>
+  );
+}
+
+
+
+type LiftWasmExports = {
+  memory: WebAssembly.Memory;
+  init: (floors: number) => void;
+  pressExternalButton: (floor: number, up: boolean) => void;
+  pressInternalButton: (floor: number) => void;
+  getCurrentFloor: () => number;
+  tick: () => void;
+  getExternalButtonStates: () => number;
+  getInternalButtonStates: () => number;
+  getDisplayInfo: () => void;
 };
+const FLOOR_HEIGHT = 100;
 
-const TaskCard: React.FC<{ task: Task, floatingTask: string }> = ({ task, floatingTask }) => {
-    const baseGradient =
-        task.queue === 'microtask'
-            ? 'from-pink-500/40 via-pink-700/30 to-purple-800/20'
-            : task.queue === 'macrotask'
-                ? 'from-cyan-500/40 via-blue-700/30 to-blue-900/20'
-                : 'from-violet-500/40 via-violet-700/30 to-purple-800/20';
+function Test() {
+  const [floor, setFloor] = useState<number>(0);
+  const [lift, setLift] = useState<LiftWasmExports | null>(null);
+  const [externalButtons, setExternalButtons] = useState<ButtonState[][]>([]);
+  const [internalButtons, setInternalButtons] = useState<ButtonState[]>([]);
+  const [direction, setDirection] = useState<'UPWARDS' | 'DOWNWARDS' | 'NEUTRAL'>('NEUTRAL');
+  const [floors, setFloors] = useState(0);
+  const triggerExternal = (f: number, upwards: boolean) => lift?.pressExternalButton(f, upwards);
+  const triggerInternal = (f: number) => lift?.pressInternalButton(f);
+  const shaftRef = useRef<HTMLDivElement>(null);
+  const floorsRef = useRef<HTMLDivElement>(null);
 
-    const borderColor =
-        task.queue === 'microtask' ? 'border-pink-400/30' :
-            task.queue === 'macrotask' ? 'border-cyan-400/30' :
-                'border-violet-400/30';
-
-    const shadowColor =
-        task.queue === 'microtask' ? '#ec4899' :
-            task.queue === 'macrotask' ? '#06b6d4' :
-                '#8b5cf6';
-
-    const sizeClasses =
-        task.queue === 'microtask' || task.queue === 'macrotask'
-            ? 'w-48 h-12'
-            : 'w-72 h-20';
-
-    return (
-        <motion.div
-            data-task-id={task.id}
-            className={`relative ${sizeClasses} p-3 w-28 md:w-48 md:h-10 h-max text-center rounded-xl text-sm font-semibold text-white 
-          bg-gradient-to-br ${baseGradient} border ${borderColor} 
-          shadow-[inset_0_0_15px_#ffffff22,_0_0_30px_5px] backdrop-blur-xl
-          hover:scale-105 transition-transform duration-500 ease-out ${task.id === floatingTask ? 'opacity-0' : ''}`}
-            style={{
-                boxShadow: `inset 0 0 20px rgba(255,255,255,0.1), 0 0 40px 10px ${shadowColor}55`,
-                zIndex: 10,
-            }}
-
-            whileHover={{ scale: 1.08, rotate: 1 }}
-            animate={{ y: [0, -4, 0], boxShadow: [`0 0 30px 10px ${shadowColor}33`, `0 0 40px 15px ${shadowColor}66`, `0 0 30px 10px ${shadowColor}33`] }}
-            transition={{ duration: 2, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
-        >
-            <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-transparent blur-lg opacity-20 pointer-events-none z-0"></div>
-
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none mix-blend-soft-light z-0"></div>
-
-            <div className="absolute inset-0 bg-gradient-radial from-white/10 to-transparent opacity-10 blur-lg pointer-events-none"></div>
-
-            <div className="relative z-10 text-xs truncate w-full">{task.label}</div>
-        </motion.div>
-    );
-};
-
-const FloatingTask: React.FC<{ task: { id: string; label: string; from: DOMRect; to: DOMRect }; onComplete: () => void }> = ({ task, onComplete }) => {
-    const { from, to } = task;
-    const screenWidth = window.innerWidth;
-    let deltaX = (to.left + to.width / 2) - (from.left + from.width / 2) - 60;
-    let deltaY = to.bottom - from.bottom;
-
-    // if (screenWidth < 768) {
-    //     deltaX = (to.left - from.left) * -1.1;
-    //     deltaY = (to.bottom - from.bottom);
-    // }
+  function readUTF8(memory: WebAssembly.Memory, addr: number, len: number): string {
+    const bytes = new Uint8Array(memory.buffer, addr, len);
+    const decoder = new TextDecoder("utf-8");
+    return decoder.decode(bytes);
+  }
 
 
-    return (
-        <motion.div
-            className="fixed w-28 md:w-48 truncate md:h-10 h-max p-3 text-center rounded-xl text-xs font-semibold text-white bg-gradient-to-br from-pink-500/40 via-pink-700/30 to-purple-800/20 border border-pink-400/30 shadow-[inset_0_0_15px_#ffffff22,_0_0_30px_5px] backdrop-blur-xl z-50"
-            style={{
-                top: from.top - 40,
-                left: from.left + 55,
-            }}
-            initial={{ x: -55, y: 20 }}
-            animate={{ x: deltaX, y: deltaY }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-            onAnimationComplete={onComplete}
-        >
-            {task.label}
-        </motion.div>
-    );
-};
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    let interval2: NodeJS.Timeout;
+    let interval3: NodeJS.Timeout;
 
-const taskDefinitions: { [K in TaskType]: { label: string; queue: QueueType } } = {
-    promise: { label: 'Promise.then()', queue: 'microtask' },
-    mutation: { label: 'MutationObserver', queue: 'microtask' },
-    queueMicrotask: { label: 'queueMicrotask()', queue: 'microtask' },
-    microtaskCustom: { label: 'Custom Microtask', queue: 'microtask' },
-
-    setTimeout: { label: 'setTimeout()', queue: 'macrotask' },
-    setInterval: { label: 'setInterval()', queue: 'macrotask' },
-    setImmediate: { label: 'setImmediate()', queue: 'macrotask' },
-    io: { label: 'I/O Task', queue: 'macrotask' },
-    raf: { label: 'requestAnimationFrame()', queue: 'macrotask' },
-    fetch: { label: 'fetch() API', queue: 'macrotask' },
-    websocket: { label: 'WebSocket Message', queue: 'macrotask' },
-    domEvent: { label: 'DOM Event', queue: 'macrotask' },
-    clickHandler: { label: 'Click Handler', queue: 'macrotask' },
-    animationFrame: { label: 'Animation Frame', queue: 'macrotask' },
-    idleCallback: { label: 'requestIdleCallback()', queue: 'macrotask' },
-};
-const EventLoopSimulator: React.FC = () => {
-    const [renderCounter, setRenderCounter] = useState(0);
-    const callStackRef = useRef<Task[]>([]);
-    const microtasksRef = useRef<Task[]>([]);
-    const macrotasksRef = useRef<Task[]>([]);
-    const taskIdRef = useRef(1);
-
-    const rerender = () => setRenderCounter((c) => c + 1);
-
-    const [floatingTask, setFloatingTask] = useState<{
-        id: string;
-        label: string;
-        from: DOMRect;
-        to: DOMRect;
-    } | null>(null);
-
-
-    const moveTaskToCallStack = (source: 'microtasks' | 'macrotasks') => {
-        const task = (source === 'microtasks' ? microtasksRef.current[0] : macrotasksRef.current[0]);
-        const fromEl = document.querySelector(`[data-task-id="${task.id}"]`) as HTMLElement;
-        const toEl = document.querySelector('#callstack-container') as HTMLElement;
-
-        if (fromEl && toEl) {
-            const fromRect = fromEl.getBoundingClientRect();
-            const toRect = toEl.getBoundingClientRect();
-            setFloatingTask({ id: task.id, label: task.label, from: fromRect, to: toRect });
+    const loadWasm = async () => {
+      try {
+        const response = await fetch(`${process.env.PUBLIC_URL}/classes.wasm`);
+        if (!response.ok) {
+          console.error("WASM file failed to load");
+          return;
         }
-        setTimeout(() => {
-            if (source === 'microtasks') microtasksRef.current.shift();
-            else macrotasksRef.current.shift();
-        }, 1000);
 
-        rerender();
-    };
+        const buffer = await response.arrayBuffer();
+        let memory: WebAssembly.Memory; // <-- declare memory up top!
 
-    const pushTask = (task: Task, target: 'callStack' | 'microtasks' | 'macrotasks') => {
-        if (target === 'callStack') callStackRef.current.push(task);
-        if (target === 'microtasks') microtasksRef.current.push(task);
-        if (target === 'macrotasks') macrotasksRef.current.push(task);
-        rerender();
-    };
 
-    const popTask = (target: 'callStack' | 'microtasks' | 'macrotasks') => {
-        if (target === 'callStack') {
-            callStackRef.current.shift();
-            callStackRef.current.shift();
-        };
-        if (target === 'microtasks') microtasksRef.current.shift();
-        if (target === 'macrotasks') macrotasksRef.current.shift();
-        rerender();
-    };
+        const importObject = {
+          teavm: {
+            currentTimeMillis: () => Date.now(),
+            nanoTime: () => performance.now() * 1_000_000,
 
-    const randomTask = (): Task => {
-        const keys = Object.keys(taskDefinitions) as TaskType[];
-        const type = keys[Math.floor(Math.random() * keys.length)];
-        const def = taskDefinitions[type];
-        return { id: `t${taskIdRef.current++}`, type, queue: def.queue, label: def.label };
-    };
+            putwchars: (addr: number, len: number) => {
+              const str = readUTF8(memory, addr, len);
+              console.log(`[stdout] ${str}`);
+            },
+            putwcharsOut: (addr: number, len: number) => {
+              const str = readUTF8(memory, addr, len);
+              // console.log(`[stdout] ${str}`);
 
-    const scheduleRandomTasks = () => {
-        const tasksToPush = Math.floor(Math.random() * 3) + 5;
-        for (let i = 0; i < tasksToPush; i++) {
-            const task = randomTask();
-            const delay = i * 2000;
-            setTimeout(() => {
-                pushTask(task, task.queue === 'microtask' ? 'microtasks' : 'macrotasks');
-            }, delay);
-        }
-    };
-
-    useEffect(() => {
-        const processLoop = () => {
-            if (callStackRef.current.length === 0) {
-                if (microtasksRef.current.length > 0) {
-                    const task = microtasksRef.current[0];
-                    moveTaskToCallStack('microtasks');
-                    pushTask(task, 'callStack');
-                    // scheduleRandomTasks();
-                    setTimeout(() => scheduleRandomTasks(), 6000);
-                    setTimeout(() => popTask('callStack'), 1500);
-                } else if (macrotasksRef.current.length > 0) {
-                    const task = macrotasksRef.current[0];
-                    moveTaskToCallStack('macrotasks');
-                    pushTask(task, 'callStack');
-                    // scheduleRandomTasks();
-                    setTimeout(() => scheduleRandomTasks(), 6000);
-                    setTimeout(() => popTask('callStack'), 1500);
-                } else {
-                    scheduleRandomTasks();
+              try {
+                const data = JSON.parse(str);
+                if (data.type === "internal") {
+                  const internalStates = data.states.map((s: number) => s === 1);
+                  // console.log("Internal Button States:", internalStates);
+                  setInternalButtons(internalStates);
                 }
-            }
-            setTimeout(() => processLoop(), 3000);
+                if (data.type === "external") {
+                  const externalStates = data.states.map((row: number[]) =>
+                    row.map((s: number) => s === 1)
+                  );
+                  // console.log("External Button States:", externalStates);
+                  setExternalButtons(externalStates);
+                }
+                if (data.type === "displayInfo") {
+                  const direction = data.direction;
+                  // console.log("direction Info:", direction);
+                  setDirection(direction);
+                }
+              } catch (err) {
+                // console.warn("Non-JSON stdout:", str);
+              }
+            },
+            putwcharsErr: (addr: number, len: number) => {
+              const str = readUTF8(memory, addr, len);
+              console.error(`[stderr] ${str}`);
+            },
+            putwchar: (code: number) => {
+              console.log(`[char] ${String.fromCharCode(code)}`);
+            },
+            putwcharErr: (code: number) => {
+              console.error(`[char err] ${String.fromCharCode(code)}`);
+            },
+            logString: (addr: number) => {
+              const str = readUTF8(memory, addr, 0xFFFF);
+              console.log(`[logString] ${str}`);
+
+              try {
+                const data = JSON.parse(str);
+
+                if (data.type === "internal") {
+                  const internalStates = data.states.map((s: number) => s === 1);
+                  console.log("✅ Internal Button States:", internalStates);
+                  // Optionally update your state here
+                }
+
+                if (data.type === "external") {
+                  const externalStates = data.states.map((row: number[]) =>
+                    row.map((s: number) => s === 1)
+                  );
+                  console.log("✅ External Button States:", externalStates);
+                  setExternalButtons(externalStates);
+                  // Optionally update your state here
+                }
+              } catch (e) {
+                console.warn("Could not parse logString as JSON:", str);
+              }
+            },
+            logInt: (val: number) => {
+              console.log(`[logInt] ${val}`);
+            },
+            logOutOfMemory: () => {
+              console.error("[TeaVM] Out of memory");
+            },
+            teavm_interrupt: () => { }
+          }
         };
-        setTimeout(() => processLoop(), 3000);
-    }, []);
 
 
-    return (
-        <div className="relative w-full min-h-screen text-white flex flex-col items-center justify-start p-3 md:p-10 space-y-14 font-sans">
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-                <div className="absolute w-[300vw] h-[300vw] bg-gradient-radial from-fuchsia-500/90 via-purple-500/80 to-transparent rounded-full blur-[200px] opacity-90 animate-pulse-slow animate-blob-drift-1 left-1/4 top-1/4 mix-blend-screen"></div>
 
-                <div className="absolute w-[300vw] h-[300vw] bg-gradient-radial from-cyan-400/90 via-blue-500/80 to-transparent rounded-full blur-[200px] opacity-90 animate-pulse-slow animate-blob-drift-2 right-1/4 bottom-1/4 mix-blend-screen"></div>
+        const { instance } = await WebAssembly.instantiate(buffer, importObject);
+        const exports = instance.exports as unknown as LiftWasmExports;
+        memory = (instance.exports.memory as WebAssembly.Memory);
 
-                <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(255,0,255,0.4),rgba(0,255,255,0.4),transparent)] animate-rotate-slow blur-[150px] opacity-60 mix-blend-overlay"></div>
+        console.log("WASM loaded:", exports);
+        exports.init(floors);
+        setLift(exports);
 
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.4)_2px,transparent_2px)] bg-[size:16px_16px] animate-grid-drift opacity-25 pointer-events-none mix-blend-overlay"></div>
+        interval = setInterval(() => {
+          const current = exports.getCurrentFloor();
+          // console.log("Lift at:", current);
+          setFloor(current);
+        }, 500);
+        interval2 = setInterval(() => {
+          exports.tick();
+        }, 500);
+        interval3 = setInterval(() => {
+          exports.getDisplayInfo();
+        }, 500);
+        return () => {
+          clearInterval(interval);
+          clearInterval(interval2);
+          clearInterval(interval3);
+        }
+      } catch (err) {
+        console.error("Error loading WASM:", err);
+      }
+    };
+    loadWasm();
+    if (shaftRef.current) {
+      shaftRef.current.style.setProperty('height', `${floors * 100}px`, 'important');
+      shaftRef.current.style.setProperty('width', '400px', 'important');
+    }
+    if (floorsRef.current) {
+      floorsRef.current.style.setProperty('height', `${floors * 100}px`, 'important');
+      floorsRef.current.style.setProperty('width', '400px', 'important');
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+      if (interval2) clearInterval(interval2);
+      if (interval3) clearInterval(interval3);
+    };
+  }, [floors]);
 
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.25)_1.5px,transparent_1.5px)] bg-[size:12px_12px] animate-particles opacity-25 pointer-events-none mix-blend-soft-light"></div>
+  return (
+    <div className="elevator-container">
+      <motion.h1
+        initial={{ opacity: 0, y: -50, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }}
+        className="elevator-heading-premium"
+      >
+        Stylish Elevator System
+      </motion.h1>
+      <FloorSelector onSubmit={(floors) => setFloors(floors)} />
+      {floors != 0 ?
+        <>
+          <LiftDisplay direction={direction} floor={floor} />
+          <div className="elevator-ui">
+            <div className={`relative`} ref={floorsRef} style={{
+              height: `${floors * 100}px !important`,
+              width: "400px !important"
+            }} >
+              {Array.from({ length: floors }, (_, i) => (
+                <div
+                  key={i}
+                  className={`
+              absolute left-0 w-full px-6 py-3
+              flex items-center justify-between rounded-[16px]
+              bg-white/60 backdrop-blur-2xl border border-yellow-300/40
+              shadow-[inset_0_0_8px_rgba(255,255,255,0.25),_0_2px_24px_rgba(255,200,0,0.15)]
+               overflow-hidden transition-transform duration-500 ease-in-out
+              hover:scale-[1.02] group animate-panelFloat
+            `}
+                  style={{ bottom: `${i * FLOOR_HEIGHT}px`, height: `${FLOOR_HEIGHT - 10}px` }}
+                >
+                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-yellow-300/20 to-transparent blur-sm opacity-50 group-hover:opacity-100 animate-shimmer pointer-events-none" />
 
-                <div className="absolute inset-0 bg-gradient-conic from-fuchsia-500/50 via-purple-500/40 to-cyan-500/40 animate-rotate-very-slow blur-[200px] opacity-60 mix-blend-overlay"></div>
-            </div>
+                  <div className="absolute inset-1 rounded-[14px] bg-white/30 border border-white/20 shadow-inner z-0" />
 
-            <h1
-                className="relative text-3xl md:text-6xl font-extrabold tracking-widest text-center bg-clip-text text-transparent 
-    bg-gradient-to-r from-pink-500 via-purple-400 to-cyan-400 
-    animate-gradient-x pulse-slow drop-shadow-xl"
-            >
-                JavaScript Event Loop Simulator
-                <span className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 blur-2xl opacity-20 animate-shimmer pointer-events-none"></span>
-            </h1>
-            <div className="flex items-start flex-col md:flex-row justify-center gap-12 w-full max-w-7xl z-10">
-                <div id='callstack-container' className="w-full flex mx-auto md:mx-0 mt-5 md:mt-0 flex-col items-center space-y-6 order-2 md:order-1">
-                    <h2 className="text-xl font-bold tracking-widest uppercase text-violet-300 drop-shadow-lg">
-                        Call Stack
-                    </h2>
+                  <div className="relative z-10 text-yellow-800 font-extrabold text-[0.9rem] tracking-wider uppercase">
+                    Floor {i}
+                  </div>
 
-                    <div
-                        className="relative w-4/5 md:w-80 md:h-[500px] h-[250px] flex flex-col p-5 rounded-3xl items-center justify-end gap-4
-      bg-gradient-to-br from-violet-700/30 via-purple-800/20 to-violet-900/10
-      border border-violet-400/20 shadow-[0_0_50px_15px_#8b5cf644] hover:shadow-violet-500/40
-      backdrop-blur-2xl transition-all duration-500 ease-out overflow-visible group"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-transparent blur-2xl opacity-20 pointer-events-none"></div>
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-soft-light pointer-events-none"></div>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:12px_12px] animate-particles opacity-10 pointer-events-none"></div>
-                        <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(138,43,226,0.2),rgba(75,0,130,0.2),transparent)] animate-rotate-very-slow blur-2xl opacity-10 pointer-events-none"></div>
-                    </div>
-
-                    {floatingTask && (
-                        <FloatingTask
-                            task={floatingTask}
-                            onComplete={() => {
-                                callStackRef.current.push({
-                                    id: floatingTask.id,
-                                    label: floatingTask.label,
-                                    type: 'setTimeout',
-                                    queue: 'callStack',
-                                });
-                                setTimeout(() => {
-                                    setFloatingTask(null);
-                                    rerender();
-                                }, 1000);
-                            }}
-                        />
+                  <div className="relative z-10 flex gap-2">
+                    {i < floors - 1 && (
+                      <button
+                        className={clsx(
+                          'w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 ease-in-out transform',
+                          externalButtons[i]?.[0]
+                            ? 'bg-gradient-to-br from-orange-600 to-yellow-400 text-white shadow-[0_0_20px_rgba(255,150,0,0.6)] ring-4 ring-yellow-400 animate-buttonGlow'
+                            : 'bg-gradient-to-br from-zinc-200 to-zinc-100 text-gray-600 border border-gray-300 hover:bg-zinc-300 hover:shadow-md'
+                        )}
+                        onClick={() => triggerExternal(i, true)}
+                      >
+                        ▲
+                      </button>
                     )}
+
+                    {i > 0 && (
+                      <button
+                        className={clsx(
+                          'w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 ease-in-out transform',
+                          externalButtons[i]?.[externalButtons[i].length - 1]
+                            ? 'bg-gradient-to-br from-orange-600 to-yellow-400 text-white shadow-[0_0_20px_rgba(255,150,0,0.6)] ring-4 ring-yellow-400 animate-buttonGlow'
+                            : 'bg-gradient-to-br from-zinc-200 to-zinc-100 text-gray-600 border border-gray-300 hover:bg-zinc-300 hover:shadow-md'
+                        )}
+                        onClick={() => triggerExternal(i, false)}
+                      >
+                        ▼
+                      </button>
+                    )}
+                  </div>
                 </div>
 
-                <div className="w-full flex flex-col items-center justify-start gap-6 order-1 md:order-2">
-                    {['Microtasks', 'Macrotasks'].map((section, index) => (
-                        <><h2 className="text-xl font-bold tracking-widest uppercase text-violet-300 drop-shadow-lg">
-                            {section}
-                        </h2>
-                            <div
-                                className={`relative w-4/5 md:w-[700px] h-32 md:h-52 flex flex-row p-5 rounded-3xl items-start justify-start gap-4 flex-wrap
-    ${section === 'Microtasks'
-                                        ? 'bg-gradient-to-br from-pink-700/30 via-pink-800/20 to-purple-900/10 border border-pink-400/20 shadow-[0_0_40px_10px_#ec489933] hover:shadow-pink-500/40'
-                                        : 'bg-gradient-to-br from-cyan-700/30 via-blue-800/20 to-blue-900/10 border border-cyan-400/20 shadow-[0_0_40px_10px_#06b6d433] hover:shadow-cyan-500/40'
-                                    }
-    backdrop-blur-2xl transition-all duration-500 ease-out overflow-y-auto overflow-x-hidden group scrollbar-thin scrollbar-track-transparent scrollbar-thumb-pink-400/40
-  `}
-                            >
-
-                                <AnimatePresence mode="popLayout">
-                                    {(section === 'Microtasks'
-                                        ? microtasksRef.current
-                                        : macrotasksRef.current
-                                    ).map((task) => (
-                                        <TaskCard key={task.id} floatingTask={floatingTask?.id || ""} task={task} />
-                                    ))}
-                                </AnimatePresence>
-
-                                <div className="absolute inset-0 bg-gradient-to-t from-white/5 via-transparent to-transparent blur-lg opacity-30 pointer-events-none"></div>
-                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-soft-light pointer-events-none"></div>
-                                <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:12px_12px] animate-particles opacity-10 pointer-events-none"></div>
-                                <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(255,0,255,0.2),rgba(0,255,255,0.2),transparent)] animate-rotate-very-slow blur-2xl opacity-15 pointer-events-none"></div>
-
-                            </div>
-                        </>
-                    ))}
-                </div>
+              ))}
             </div>
+            <div className={`elevator-shaft`} ref={shaftRef} style={{
+              height: `${floors * 100}px !important`,
+              width: "400px !important"
+            }}>
+              {Array.from({ length: floors }, (_, i) => (
+                <div
+                  key={`floor-line-${i}`}
+                  className="floor-line"
+                  style={{ bottom: `${i * FLOOR_HEIGHT}px` }}
+                />
+              ))}
+              {Array.from({ length: floors }, (_, i) => (
+                <div
+                  key={`shaft-line-${i}`}
+                  className="shaft-line"
+                  style={{ bottom: `${i * FLOOR_HEIGHT}px` }}
+                />
+              ))}
+              <motion.div
+                className={`lift-cabin relative w-full h-[${FLOOR_HEIGHT}px] flex items-center justify-center
+rounded-xl bg-white/5 backdrop-blur-xl
+border-y-2 border-yellow-300 shadow-[0_0_20px_rgba(255,255,0,0.2)]
+hover:shadow-[0_0_30px_rgba(255,255,0,0.4)] transition-all duration-100
+`}
+                animate={{ bottom: floor * FLOOR_HEIGHT }}
+                transition={{ type: 'tween', ease: 'linear', duration: 0.1 }}
+              >
+                <div className="cabin-interior w-[90%] h-[100%] rounded-xl px-4 py-2
+bg-gradient-to-br from-yellow-100/10 to-yellow-200/5
+border border-yellow-300/20 shadow-inner
+flex flex-col justify-between items-center">
+                  <div className="floor-led-display text-yellow-300 text-sm font-mono tracking-wider
+bg-black/70 px-4 py-1 rounded-md shadow-inner
+border border-yellow-400/30 text-center w-full
+">Floor {floor}</div>
+                  <div className="button-grid grid grid-cols-4 gap-2 mt-2 w-full
+">
+                    {Array.from({ length: floors }, (_, i) => (
+                      <button
+                        key={i}
+                        className={`internal-btn w-8 h-8 rounded-md text-xs font-bold
+text-yellow-200 bg-yellow-700 hover:bg-yellow-600
+hover:scale-105 active:scale-95 transition-all duration-200
+shadow-[0_0_6px_rgba(255,255,0,0.3)]
+ ${internalButtons[i] ? 'pressed' : ''}`}
+                        onClick={() => triggerInternal(i)}
+                      >
+                        {i}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </> : <motion.h1
+          initial={{ opacity: 0, y: -50, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }}
+          className="mt-20 text-3xl font-bold text-gray-900 text-center tracking-wide"
+        >
+          Please enter number of floors
+        </motion.h1>
 
 
-        </div>
+      }
 
-    );
-};
+    </div>
+  );
+}
 
-export default EventLoopSimulator;
+export default Test;
