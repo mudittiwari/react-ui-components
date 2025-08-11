@@ -20,10 +20,12 @@ export default function CSSWrapper({
       link.href = cssHref;
       shadow.appendChild(link);
 
-      const link2 = document.createElement('link');
-      link2.rel = 'stylesheet';
-      link2.href = `${process.env.PUBLIC_URL}/index.css`;
-      shadow.appendChild(link2);
+      if (!cssHref.includes('index.css')) {
+        const link2 = document.createElement('link');
+        link2.rel = 'stylesheet';
+        link2.href = `${process.env.PUBLIC_URL}/index.css`;
+        shadow.appendChild(link2);
+      }
       const container = document.createElement('div');
       shadow.appendChild(container);
 

@@ -92,6 +92,31 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /bg-gradient-.*/,
+    },
+    {
+      pattern: /from-.*/,
+    },
+    {
+      pattern: /via-.*/,
+    },
+    {
+      pattern: /to-.*/,
+    },
+    {
+      pattern: /animate-.*/,
+    },
+    {
+      pattern: /blur-.*/,
+    },
+    {
+      pattern: /opacity-.*/,
+    },
+    { pattern: /mix-blend-.*/ },
+    { pattern: /animate-.*/ },
+  ],
   plugins: [],
 }
 

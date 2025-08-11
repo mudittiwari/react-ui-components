@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { AnimatePresence, motion, MotionValue, number } from 'framer-motion';
 import { JSXElementConstructor, Key, ReactElement, ReactNode, RefObject, useEffect, useRef, useState } from 'react';
-import ErrorToast from './ErrorToast';
-import SuccessToast from './SuccessToast';
+import ErrorToast from '../../pages/ErrorToast';
+import SuccessToast from '../../pages/SuccessToast';
 
 
 const VEHICLE_NUM_OFFSET = 1024;
@@ -26,7 +26,7 @@ interface Slot {
   vehicleNumber?: string;
 }
 
-function Test() {
+function ParkingSystemLLD() {
   const [twCount, setTwCount] = useState(0);
   const [fwCount, setFwCount] = useState(0);
   const [wasm, setWasm] = useState<ParkingWasmExports | null>(null);
@@ -70,7 +70,7 @@ function Test() {
       wasm?.initParkingSystem(twCount, fwCount);
       wasm?.getParkingSlotsState(0);
       wasm?.getParkingSlotsState(1);
-      console.log("Parking system initialized with TW:", twCount, "FW:", fwCount);
+    //   console.log("Parking system initialized with TW:", twCount, "FW:", fwCount);
       setInitialized(true);
     } else {
       setShowError(true);
@@ -126,7 +126,7 @@ function Test() {
       .replace(/,\s*]/g, ']');
 
   const handleSlotClick = (slot: any) => {
-    console.log(slot)
+    // console.log(slot)
     if (slot.occupied && slot.vehicleNumber) {
       setSelectedVehicle(slot.vehicleNumber);
       setConfirmReleaseOpen(true);
@@ -141,13 +141,13 @@ function Test() {
     previousFourSlotsRef.current = slotsFourWheelers;
   }, [slotsFourWheelers]);
 
-  useEffect(() => {
-    console.log("📦 animatingVehicle state changed:", animatingVehicle);
-  }, [animatingVehicle]);
+//   useEffect(() => {
+//     console.log("📦 animatingVehicle state changed:", animatingVehicle);
+//   }, [animatingVehicle]);
 
-  useEffect(() => {
-    console.log("📦 animatingVehicleFour state changed:", animatingVehicle);
-  }, [animatingVehicleFour]);
+//   useEffect(() => {
+//     console.log("📦 animatingVehicleFour state changed:", animatingVehicle);
+//   }, [animatingVehicleFour]);
 
   function getRelativeCenter(
     fromRef: RefObject<HTMLDivElement>,
@@ -209,12 +209,12 @@ function Test() {
 
           putwchars: (addr: number, len: number) => {
             const str = readUTF8(memory, addr, len);
-            console.log(`[stdout] ${str}`);
+            // console.log(`[stdout] ${str}`);
           },
           putwcharsOut: (addr: number, len: number) => {
             const str = readUTF8(memory, addr, len);
             // console.log(addr);
-            console.log(`[stdout] ${str}`);
+            // console.log(`[stdout] ${str}`);
             const sanitizedStr = sanitizeJson(str);
             try {
               // console.log("Parsing JSON from stdout:", sanitizedStr);
@@ -239,7 +239,7 @@ function Test() {
                     return prev && prev.occupied && !ns.occupied;
                   });
                   if (diff) {
-                    console.log("Animating vehicle:", vehicleNumber, "to position:", diff.x, diff.y);
+                    // console.log("Animating vehicle:", vehicleNumber, "to position:", diff.x, diff.y);
                     setAnimatingVehicle({ id: vehicleNumber, x: diff.y, y: diff.x });
                     setTimeout(() => {
                       setSlotsTwoWheelers(newSlots);
@@ -253,7 +253,7 @@ function Test() {
                   }
 
                   if (diff2) {
-                    console.log("Animating vehicle exit:", vehicleNumber, "from position:", diff2.x, diff2.y);
+                    // console.log("Animating vehicle exit:", vehicleNumber, "from position:", diff2.x, diff2.y);
                     setAnimatingVehicleExit({ id: vehicleNumber, x: diff2.y, y: diff2.x });
                     setTimeout(() => {
                       setSlotsTwoWheelers(newSlots);
@@ -280,7 +280,7 @@ function Test() {
                     return prev && prev.occupied && !ns.occupied;
                   });
                   if (diff) {
-                    console.log("Animating vehicle:", vehicleNumber, "to position:", diff.x, diff.y);
+                    // console.log("Animating vehicle:", vehicleNumber, "to position:", diff.x, diff.y);
                     setAnimatingVehicleFour({ id: vehicleNumber, x: diff.y, y: diff.x });
                     setTimeout(() => {
                       setSlotsFourWheelers(newSlots);
@@ -293,7 +293,7 @@ function Test() {
                     setAnimatingVehicleFour(null);
                   }
                   if (diff2) {
-                    console.log("Animating vehicle exit:", vehicleNumber, "from position:", diff2.x, diff2.y);
+                    // console.log("Animating vehicle exit:", vehicleNumber, "from position:", diff2.x, diff2.y);
                     setAnimatingVehicleFourExit({ id: vehicleNumber, x: diff2.y, y: diff2.x });
                     setTimeout(() => {
                       setSlotsFourWheelers(newSlots);
@@ -315,7 +315,7 @@ function Test() {
                 }
               }
               else if (data.type === "release") {
-                console.log("Release data:", data);
+                // console.log("Release data:", data);
                 if (data.status === "success") {
                   // console.warn("Vehicle released successfully");
                   setShowSuccess(true);
@@ -423,7 +423,7 @@ function Test() {
   const handleRelease = (selectedVehicle: string) => {
     if (!wasm) return;
     const len1 = encodeNumberPlate(selectedVehicle.toUpperCase());
-    console.log("Releasing vehicle:", selectedVehicle);
+    // console.log("Releasing vehicle:", selectedVehicle);
     wasm.releaseVehicle(len1);
     setSelectedVehicle(null);
     setConfirmReleaseOpen(false);
@@ -787,4 +787,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default ParkingSystemLLD;

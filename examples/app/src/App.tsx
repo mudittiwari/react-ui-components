@@ -36,6 +36,9 @@ import ThemeChangeIcon from "./standalone/themeChangeIcon/ThemeChangeIcon";
 import EventLoopOne from "./standalone/EventLoopOne/EventLoopOne";
 import Elevator from "./standalone/ElevatorLLD/Elevator";
 import CSSWrapper from "./standalone/CSSWrapper";
+import ParkingSystemLLD from "./standalone/ParkingSystemLLD/ParkingSytemLLD";
+import UseDeferredValue from "./hooks/useDeferredValue/UseDeferredValue";
+import { InactivityDetector } from "./hooks/custom/UseIdleTimer/InactivityDetector";
 // import Accordion3 from "./components/Accordions/Accordion3/Accordion3";
 // import Accordion4 from "./components/Accordions/Accordion4/Accordion4";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
@@ -46,7 +49,7 @@ import CSSWrapper from "./standalone/CSSWrapper";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
-  const isStandalone = location.pathname.startsWith("/standalone") || location.pathname.startsWith("/test");
+  const isStandalone = location.pathname.startsWith("/standalone") || location.pathname.startsWith("/test") || location.pathname.startsWith("/hooks");
 
   return (
     <div className="flex">
@@ -66,28 +69,27 @@ function App() {
 
   return (
     <>
-
       <HashRouter>
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/react-ui-components" element={<HomePage />} />
-            
             <Route path="/standalone/callStackOneDemo" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/callStackDemoOne.css`}><CallStackDemoOne /></CSSWrapper>} />
             <Route path="/standalone/callStackTwoDemo" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/callStackDemoTwo.css`}><CallStackDemoTwo /></CSSWrapper>} />
             <Route path="/standalone/revealCenter" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/revealCenter.css`}><RevealCenter /></CSSWrapper>} />
-
-
             <Route path="/standalone/revealContentOnScroll" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/revealContentOnScroll.css`}><RevealContentOnScroll /></CSSWrapper>} />
-
-
             <Route path="/standalone/themeChangeIcon" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/themeChangeIcon.css`}><ThemeChangeIcon /></CSSWrapper>} />
             <Route path="/standalone/eventLoopOne" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/eventLoopOne.css`}><EventLoopOne /></CSSWrapper>} />
             <Route path="/standalone/elevator" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/elevator.css`}><Elevator /></CSSWrapper>} />
+            <Route path="/standalone/parkingSystem" element={<CSSWrapper cssHref={`${process.env.PUBLIC_URL}/index.css`}><ParkingSystemLLD /></CSSWrapper>} />
             <Route path="/accordions" element={<AccordionsPage />} />
             <Route path="/buttons" element={<ButtonsPage />} />
             <Route path="/cards" element={<CardsPage />} />
             <Route path="/test" element={<Test />} />
+
+            <Route path="hooks/useDeferredValue" element={<UseDeferredValue />} />
+
+            <Route path="hooks/custom/UseIdleTimer" element={<InactivityDetector />} />
           </Routes>
         </Layout>
       </HashRouter>

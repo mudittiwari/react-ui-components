@@ -5,6 +5,7 @@ import { HiMenuAlt3, HiX, HiChevronDown } from "react-icons/hi";
 const Sidebar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [hooksDropdownOpen, setHooksDropdownOpen] = useState(false);
 
   const links = [
     { to: "/accordions", label: "📂 Accordions" },
@@ -20,7 +21,12 @@ const Sidebar: React.FC = () => {
     { to: "/standalone/themeChangeIcon", label: "Theme Change" },
     { to: "/standalone/eventLoopOne", label: "Event Loop Demo" },
     { to: "/standalone/elevator", label: "Elevator LLD" },
+    { to: "/standalone/parkingSystem", label: "Parking System" },
   ];
+
+  const hooks = [
+    { to: "/hooks/useDeferredValue", label: "useDeferredValue" },
+  ]
 
   return (
     <>
@@ -41,10 +47,9 @@ const Sidebar: React.FC = () => {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `block p-2 rounded-md transition-all duration-300 ${
-                  isActive
-                    ? "bg-blue-500 text-white font-semibold"
-                    : "hover:bg-gray-700 text-gray-300"
+                `block p-2 rounded-md transition-all duration-300 ${isActive
+                  ? "bg-blue-500 text-white font-semibold"
+                  : "hover:bg-gray-700 text-gray-300"
                 }`
               }
             >
@@ -58,9 +63,8 @@ const Sidebar: React.FC = () => {
           >
             <span>📦 Standalone Demos</span>
             <HiChevronDown
-              className={`transform transition-transform ${
-                dropdownOpen ? "rotate-180" : ""
-              }`}
+              className={`transform transition-transform ${dropdownOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -71,10 +75,9 @@ const Sidebar: React.FC = () => {
                   key={to}
                   to={to}
                   className={({ isActive }) =>
-                    `block p-2 rounded-md text-xs transition-all duration-300 ${
-                      isActive
-                        ? "bg-blue-500 text-white font-semibold"
-                        : "hover:bg-gray-700 text-gray-300"
+                    `block p-2 rounded-md text-xs transition-all duration-300 ${isActive
+                      ? "bg-blue-500 text-white font-semibold"
+                      : "hover:bg-gray-700 text-gray-300"
                     }`
                   }
                 >
@@ -83,6 +86,38 @@ const Sidebar: React.FC = () => {
               ))}
             </div>
           )}
+
+          <button
+            onClick={() => setHooksDropdownOpen(!hooksDropdownOpen)}
+            className="flex items-center justify-between w-full p-2 rounded-md text-gray-300 hover:bg-gray-700 transition-all duration-300"
+          >
+            <span>📦 React Hooks</span>
+            <HiChevronDown
+              className={`transform transition-transform ${hooksDropdownOpen ? "rotate-180" : ""
+                }`}
+            />
+          </button>
+
+          {hooksDropdownOpen && (
+            <div className="ml-4 mt-2 space-y-2">
+              {hooks.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  className={({ isActive }) =>
+                    `block p-2 rounded-md text-xs transition-all duration-300 ${isActive
+                      ? "bg-blue-500 text-white font-semibold"
+                      : "hover:bg-gray-700 text-gray-300"
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </div>
+          )}
+
+
         </nav>
       </div>
 
@@ -103,10 +138,9 @@ const Sidebar: React.FC = () => {
                   to={to}
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
-                    `block p-2 rounded-md transition-all duration-300 ${
-                      isActive
-                        ? "bg-blue-500 text-white font-semibold"
-                        : "hover:bg-gray-700 text-gray-300"
+                    `block p-2 rounded-md transition-all duration-300 ${isActive
+                      ? "bg-blue-500 text-white font-semibold"
+                      : "hover:bg-gray-700 text-gray-300"
                     }`
                   }
                 >
@@ -120,9 +154,8 @@ const Sidebar: React.FC = () => {
               >
                 <span>📦 Standalone Demos</span>
                 <HiChevronDown
-                  className={`transform transition-transform ${
-                    dropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transform transition-transform ${dropdownOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -134,10 +167,9 @@ const Sidebar: React.FC = () => {
                       to={to}
                       onClick={() => setMenuOpen(false)}
                       className={({ isActive }) =>
-                        `block p-2 rounded-md text-xs transition-all duration-300 ${
-                          isActive
-                            ? "bg-blue-500 text-white font-semibold"
-                            : "hover:bg-gray-700 text-gray-300"
+                        `block p-2 rounded-md text-xs transition-all duration-300 ${isActive
+                          ? "bg-blue-500 text-white font-semibold"
+                          : "hover:bg-gray-700 text-gray-300"
                         }`
                       }
                     >
