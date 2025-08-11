@@ -26,6 +26,7 @@ const Sidebar: React.FC = () => {
 
   const hooks = [
     { to: "/hooks/useDeferredValue", label: "useDeferredValue" },
+    { to: "/hooks/custom/UseIdleTimer", label: "Idle Timer(Custom)" },
   ]
 
   return (

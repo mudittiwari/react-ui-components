@@ -38,7 +38,7 @@ import Elevator from "./standalone/ElevatorLLD/Elevator";
 import CSSWrapper from "./standalone/CSSWrapper";
 import ParkingSystemLLD from "./standalone/ParkingSystemLLD/ParkingSytemLLD";
 import UseDeferredValue from "./hooks/useDeferredValue/UseDeferredValue";
-import { InactivityDetector } from "./hooks/custom/UseIdleTimer/InactivityDetector";
+import { InactivityDetectorWithCode } from "./hooks/custom/UseIdleTimer/InactivityDetector";
 // import Accordion3 from "./components/Accordions/Accordion3/Accordion3";
 // import Accordion4 from "./components/Accordions/Accordion4/Accordion4";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
@@ -89,7 +89,7 @@ function App() {
 
             <Route path="hooks/useDeferredValue" element={<UseDeferredValue />} />
 
-            <Route path="hooks/custom/UseIdleTimer" element={<InactivityDetector />} />
+            <Route path="hooks/custom/UseIdleTimer" element={<InactivityDetectorWithCode />} />
           </Routes>
         </Layout>
       </HashRouter>
