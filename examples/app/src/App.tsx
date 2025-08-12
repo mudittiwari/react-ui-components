@@ -39,6 +39,7 @@ import CSSWrapper from "./standalone/CSSWrapper";
 import ParkingSystemLLD from "./standalone/ParkingSystemLLD/ParkingSytemLLD";
 import UseDeferredValue from "./hooks/useDeferredValue/UseDeferredValue";
 import { InactivityDetectorWithCode } from "./hooks/custom/UseIdleTimer/InactivityDetector";
+import { UndoRedoDemo } from "./hooks/custom/UseUndoRedoWithHistory/Demo";
 // import Accordion3 from "./components/Accordions/Accordion3/Accordion3";
 // import Accordion4 from "./components/Accordions/Accordion4/Accordion4";
 // import MovingBeforeLeftRightButton from './components/Buttons/MovingBeforeLeftRightButton/MovingBeforeLeftRightButton';
@@ -90,6 +91,7 @@ function App() {
             <Route path="hooks/useDeferredValue" element={<UseDeferredValue />} />
 
             <Route path="hooks/custom/UseIdleTimer" element={<InactivityDetectorWithCode />} />
+            <Route path="hooks/custom/UseUndoRedoWithHistory" element={<UndoRedoDemo />} />
           </Routes>
         </Layout>
       </HashRouter>

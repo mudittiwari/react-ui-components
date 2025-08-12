@@ -125,7 +125,7 @@ function InactivityDetector() {
   };
 
   const { isIdle } = useIdleTimer({
-    timeout: 5 * 1000,
+    timeout: 3 * 1000,
     onIdle: handleIdle,
     onActive: handleActive,
   });
@@ -163,7 +163,7 @@ function InactivityDetector() {
           margin: '0 0 18px 0',
           fontWeight: 700,
         }}>
-          Current Timeout limit is: 5sec
+          Current Timeout limit is: 3sec
         </h2>
         <h2 style={{
           color: isIdle ? '#e53935' : '#388e3c',

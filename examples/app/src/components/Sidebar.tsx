@@ -27,6 +27,7 @@ const Sidebar: React.FC = () => {
   const hooks = [
     { to: "/hooks/useDeferredValue", label: "useDeferredValue" },
     { to: "/hooks/custom/UseIdleTimer", label: "Idle Timer(Custom)" },
+    { to: "/hooks/custom/UseUndoRedoWithHistory", label: "Undo Remo Hook(Custom)" },
   ]
 
   return (
@@ -167,6 +168,38 @@ const Sidebar: React.FC = () => {
                       key={to}
                       to={to}
                       onClick={() => setMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `block p-2 rounded-md text-xs transition-all duration-300 ${isActive
+                          ? "bg-blue-500 text-white font-semibold"
+                          : "hover:bg-gray-700 text-gray-300"
+                        }`
+                      }
+                    >
+                      {label}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+
+
+
+              <button
+                onClick={() => setHooksDropdownOpen(!hooksDropdownOpen)}
+                className="flex items-center justify-between w-full p-2 rounded-md text-gray-300 hover:bg-gray-700 transition-all duration-300"
+              >
+                <span>📦 React Hooks</span>
+                <HiChevronDown
+                  className={`transform transition-transform ${hooksDropdownOpen ? "rotate-180" : ""
+                    }`}
+                />
+              </button>
+
+              {hooksDropdownOpen && (
+                <div className="ml-4 mt-2 space-y-2">
+                  {hooks.map(({ to, label }) => (
+                    <NavLink
+                      key={to}
+                      to={to}
                       className={({ isActive }) =>
                         `block p-2 rounded-md text-xs transition-all duration-300 ${isActive
                           ? "bg-blue-500 text-white font-semibold"

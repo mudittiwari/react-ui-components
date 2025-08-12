@@ -104,12 +104,12 @@ const SearchDemo: React.FC<SearchProps> = ({ items, title, useDeferred = false, 
 export default function App() {
   return (
     <main style={containerStyle}>
-      <SearchDemo
+      {/* <SearchDemo
         items={items}
         title="❗ Without useDeferredValue"
         useDeferred={false}
         accentColor="#e53935" // warm red
-      />
+      /> */}
       <SearchDemo
         items={items}
         title="✨ With useDeferredValue"
