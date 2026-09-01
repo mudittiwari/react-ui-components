@@ -15,6 +15,7 @@ import QuantumBlobButton from "../components/Buttons/QuantumBlobButton/QuantumBl
 import MagnetOrbitButton from "../components/Buttons/MagnetOrbitButton/MagnetOrbitButton";
 import { CometTrailButton } from "../components/Buttons/CometTrailButton/CometTrailButton";
 import { StarPulseButton } from "../components/Buttons/StarPulseButton/StarPulseButton";
+import MagneticHoverButton from "../components/Buttons/MagneticHoverButton/MagneticHoverButton";
 
 const ButtonsPage: React.FC = () => {
   const [selectedButton, setSelectedButton] = useState<keyof typeof ButtonCodeSnippets>("MovingBorderButton");
@@ -207,6 +208,25 @@ const ButtonsPage: React.FC = () => {
           fontWeight="800"
           padding="1rem 2.6rem"
           particleCount={20}
+        />
+      </div>
+    ),
+    MagneticHoverButton: (
+      <div className="w-full p-20"
+        style={{
+          background: "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <MagneticHoverButton 
+          label="Hover Me" 
+          onClick={() => console.log("Magnetic Button Clicked!")}
+          backgroundColor="#000000"
+          textColor="#ffffff"
+          glowColor="rgba(168, 85, 247, 0.4)" // Purple glow
+          elasticity={0.2}
         />
       </div>
     )

@@ -1,0 +1,80 @@
+.magnetic-hover-wrapper {
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  /* Hit area buffer to start magnetic pull early, before mouse touches button */
+  padding: 2rem; 
+  margin: -2rem; 
+}
+
+.magnetic-outer-aura {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  filter: blur(20px);
+}
+
+.magnetic-hover-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+
+.magnetic-hover-button:hover {
+  transform: scale(1.05); /* Extra catchy pop effect on hover */
+}
+
+/* Glassmorphism Inner Button */
+.magnetic-hover-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.magnetic-hover-button:hover .magnetic-hover-inner {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Text glow */
+.magnetic-text {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.magnetic-hover-button:hover .magnetic-text {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Flashlight effect shining through glass */
+.magnetic-hover-glow {
+  position: absolute;
+  /* Center the glow on the mouse coordinates */
+  top: -60px;
+  left: -60px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1; /* Below the inner glass, above the background */
+  opacity: 1;
+  mix-blend-mode: screen;
+}
